@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+    public isLoading = false;
+
     constructor(private afAuth: AngularFireAuth, private angularFire: AngularFireDatabase,
                 private router: Router, private toastr: ToastrService) { }
 
@@ -21,8 +23,10 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(f: NgForm) {
+        this.isLoading = true;
         if (!f.valid) {
             this.toastr.error('Falha ao realizar login', 'Erro!');
+            this.isLoading = false;
             return;
         }
         this.afAuth.auth.signInWithEmailAndPassword(f.controls.email.value, f.controls.senha.value)
@@ -31,6 +35,7 @@ export class LoginComponent implements OnInit {
                     (data: any) => {
                         localStorage.setItem('usuario', window.btoa(data));
                         this.toastr.success(`Seja bem-vindo ao sistema, ${data[2]}`, 'Bem-vindo!');
+                        this.isLoading = false;
                         this.router.navigate(['/agenda']);
                     }
                 );
@@ -43,6 +48,7 @@ export class LoginComponent implements OnInit {
                 } else {
                     this.toastr.error('Ocorreu um erro ao acessar a aplicação', 'Erro ao acessar!');
                 }
+                this.isLoading = false;
             });
 
         f.controls.email.setValue('');
