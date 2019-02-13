@@ -1,0 +1,80 @@
+<app-header></app-header>
+<app-igreja-modal></app-igreja-modal>
+<app-delete-modal></app-delete-modal>
+
+<section class="content">
+  <header class="content__title">
+    <h1>Igrejas</h1>
+    <div class="actions">
+      <button class='btn btn-add' (click)="showModal()">
+        <i class="actions__item zmdi zmdi-plus"></i>
+        <span>Adicionar igreja</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="data-table__header">
+        <div class="form-group data-table__filter">
+          <input placeholder="Filter all columns" class="form-control">
+          <i class="form-group__bar"></i>
+        </div>
+      </div>
+      <div class="table-responsive" *ngIf="isLoaded; else notLoaded">
+        <table class="table table-striped mb-0">
+          <thead>
+            <tr>
+              <th>Código CCB</th>
+              <th>Encarregado Manutenção</th>
+              <th>Nome Igreja</th>
+              <th>Endereço</th>
+              <th>CEP</th>
+              <th>Cidade</th>
+              <th>UF</th>
+              <th>Número Celular</th>
+              <th>Marca Órgão</th>
+              <th>Modelo Órgão</th>
+              <th>Número Órgão</th>
+              <th>Patrimônio Órgão</th>
+              <th>Acessório Órgão</th>
+              <th>Nº Série Acessório Órgão</th>
+              <th class="text-right">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let igreja of igrejas">
+              <td>{{igreja.codCCB}}</td>
+              <td>{{igreja.tecnico}}</td>
+              <td>{{igreja.bairro}}</td>
+              <td>{{igreja.rua}}, {{igreja.numero}}</td>
+              <td>{{igreja.cep}}</td>
+              <td>{{igreja.cidade}}</td>
+              <td>{{igreja.uf}}</td>
+              <td>{{igreja.numCel}}</td>
+              <td>{{igreja.marca}}</td>
+              <td>{{igreja.modelo}}</td>
+              <td>{{igreja.numero}}</td>
+              <td>{{igreja.numeroPatrimonio}}</td>
+              <td>{{igreja.acessorio ? igreja.acessorio : '-'}}</td>
+              <td>{{igreja.numeroSerieAcessorio ? igreja.numeroSerieAcessorio : '-' }}</td>
+              <td class="text-right">
+                <div dropdown>
+                  <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
+                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <span class="dropdown-item" (click)="showModal(igreja)">Editar</span>
+                    <span class="dropdown-item" (click)="delete(igreja)">Excluir</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #notLoaded>
+        <p>Loading...</p>
+      </ng-template>
+    </div>
+  </div>
+
+</section>

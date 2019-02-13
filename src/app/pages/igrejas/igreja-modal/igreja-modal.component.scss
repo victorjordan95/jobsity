@@ -1,0 +1,19 @@
+.form-group {
+  display: inline-block;
+  padding: 8px 16px;
+  width: 50%;
+
+  select {
+    appearance: menulist;
+  }
+
+  &.w-100 {
+    width: 100% !important;
+  }
+}
+
+.section-separator { 
+  border-bottom: solid 1px #c9c9c9;
+  margin: 0 16px 16px;
+  padding: 0 0 8px;
+}

@@ -1,0 +1,73 @@
+<div class="modal fade" bsModal #createModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="createModal.hide()">&times;</button>
+        <h4 class="modal-title">
+            {{ isViewMode ? "Visualização de Evento" : "Evento" }}
+        </h4>
+      </div>
+
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+
+        <div class="modal-body">
+          <input type="hidden" name="id" [(ngModel)]="agendamento.id">
+
+          <div class="form-group">
+            <label>Nome Evento</label>
+            <input type="text" class="form-control" placeholder="Nome do Evento" [(ngModel)]="agendamento.title" name="title"
+              required [disabled]="isViewMode">
+          </div>
+
+          <div class="flex-row">
+            <div class="form-group">
+              <label>Data Início</label>
+              <input type="date" class="form-control" placeholder="Data de início" [(ngModel)]="agendamento.startDate"
+                name="startDate" required [disabled]="isViewMode">
+            </div>
+            <div class="form-group">
+              <label>Hora Início</label>
+              <input type="time" class="form-control" placeholder="Hora de início" [(ngModel)]="agendamento.startHour"
+                name="startHour" required [disabled]="isViewMode">
+            </div>
+          </div>
+
+          <div class="flex-row">
+            <div class="form-group">
+              <label>Data término</label>
+              <input type="date" class="form-control" placeholder="Data de término" [(ngModel)]="agendamento.endDate"
+                name="endDate" [disabled]="isViewMode">
+            </div>
+            <div class="form-group">
+              <label>Hora término</label>
+              <input type="time" class="form-control" placeholder="Hora de término" [(ngModel)]="agendamento.endHour"
+                name="endHour" [disabled]="isViewMode">
+            </div>
+          </div>
+
+          <div class="flex-row">
+              <label>Igreja</label>
+              <select class="form-control" [(ngModel)]="agendamento.igreja" placeholder="Selecione uma sala" name="igreja" [disabled]="isViewMode">
+                <option *ngFor="let church of churches" [ngValue]="church.id">
+                  {{church.nome}}
+                </option>
+              </select>
+
+          </div>
+
+        </div>
+        <div class="modal-footer" *ngIf="!isViewMode">
+          <button type="button" class="btn" (click)="createModal.hide()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!f.valid">Salvar</button>
+        </div>
+        <div class="modal-footer" *ngIf="isViewMode">
+            <button type="button" class="btn btn-success" (click)="enableEdit()">Editar</button>
+        </div>
+        
+      </form>
+
+    </div>
+  </div>
+</div>

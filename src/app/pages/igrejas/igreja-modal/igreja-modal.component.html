@@ -1,0 +1,121 @@
+<div class="modal fade" bsModal #createModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="createModal.hide()">&times;</button>
+        <h4 class="modal-title">Cadastro de Igreja</h4>
+      </div>
+
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+
+        <div class="modal-body">
+          <input type="hidden" name="id" [(ngModel)]="igreja.id">
+
+          <div class="form-group">
+            <label>Código CCB</label>
+            <input type="text" class="form-control" placeholder="Código da Igreja" [(ngModel)]="igreja.codCCB" name="codCCB"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Rua</label>
+            <input type="text" class="form-control" placeholder="Nome da Rua" [(ngModel)]="igreja.rua" name="rua"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Número</label>
+            <input type="text" class="form-control" placeholder="Número da igreja" [(ngModel)]="igreja.numero" name="numero"
+              required>
+          </div>
+
+
+          <div class="form-group">
+            <label>Bairro</label>
+            <input type="text" class="form-control" placeholder="Nome do Bairro" [(ngModel)]="igreja.bairro" name="bairro"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>CEP</label>
+            <input type="text" class="form-control" placeholder="CEP" [(ngModel)]="igreja.cep" name="cep" required>
+          </div>
+
+          <div class="form-group">
+            <label>Cidade</label>
+            <input type="text" class="form-control" placeholder="Cidade" [(ngModel)]="igreja.cidade" name="cidade"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>UF</label>
+            <select class="form-control" [(ngModel)]="igreja.uf" name="uf" required>
+              <option *ngFor="let estado of states" [ngValue]="estado.value">
+                {{estado.estado}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Encarregado de Manutenção</label>
+            <input type="text" class="form-control" placeholder="Encarregado de Manutenção" [(ngModel)]="igreja.tecnico" name="tecnico"
+              required>
+          </div>
+          
+          <div class="form-group">
+            <label>Número Celular</label>
+            <input type="text" class="form-control" placeholder="Número de Celular" [(ngModel)]="igreja.numCel" name="numCel"
+              required>
+          </div>
+
+          <h4 class="section-separator">Informações do Órgão</h4>
+
+          <div class="form-group">
+            <label>Marca</label>
+            <input type="text" class="form-control" placeholder="Marca do orgao" [(ngModel)]="igreja.marca" name="marca"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Modelo</label>
+            <input type="text" class="form-control" placeholder="Modelo do orgao" [(ngModel)]="igreja.modelo" name="modelo"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Número</label>
+            <input type="number" class="form-control" placeholder="Número do orgao" [(ngModel)]="igreja.numeroOrgao" name="numeroOrgao"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Número de Patrimônio</label>
+            <input type="number" class="form-control" placeholder="Número de patrimônio" [(ngModel)]="igreja.numeroPatrimonio"
+              name="numeroPatrimonio" required>
+          </div>
+
+          <div class="form-group">
+            <label>Acessório</label>
+            <input type="text" class="form-control" placeholder="Número de acessório" [(ngModel)]="igreja.acessorio"
+              name="acessorio">
+          </div>
+
+          <div class="form-group">
+            <label>Número de Série do Acessório</label>
+            <input type="text" class="form-control" placeholder="Número de Série do Acessório" [(ngModel)]="igreja.numeroSerieAcessorio"
+              name="numeroSerieAcessorio">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" (click)="createModal.hide()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!f.valid">Salvar</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
