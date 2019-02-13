@@ -55,6 +55,7 @@ export class ModalTecnicoComponent implements OnInit {
         if (e) {
             this.tecnico = e;
         } else {
+            this.tecnico = new Tecnico;
             const x = new Date();
             this.tecnico.id = `${x.getDate()}${x.getMonth() + 1}${x.getUTCFullYear()}` +
                 `${x.getHours()}${x.getMinutes()}${x.getSeconds()}${x.getMilliseconds()}`;
@@ -69,7 +70,6 @@ export class ModalTecnicoComponent implements OnInit {
 
     onSubmit(form: NgForm) {
         form.value.complemento = form.value.complemento ? form.value.complemento : '';
-        console.table(form.value);
         this.angularFire.list(`tecnicos/`).set(`${this.tecnico.id}`, form.value).then((t: any) => {
             this.createModal.hide();
             this.tecnico = new Tecnico;

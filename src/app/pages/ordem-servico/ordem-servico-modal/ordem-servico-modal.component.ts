@@ -52,8 +52,19 @@ export class OrdemServicoModalComponent implements OnInit {
     }
 
     onSubmit(form: NgForm) {
-        const ccbinfo = this.churches.filter(id => id.id === form.value.ccb);
+        let ccbinfo = this.churches.filter(id => id.id === form.value.ccb);
+        let t1 = this.tecnicos.filter(id => id.id === form.value.tecnico1);
+        let t2 = this.tecnicos.filter(id => id.id === form.value.tecnico2);
+
+        ccbinfo = ccbinfo[0];
+        t1 = {'nome': t1[0].nome, 'celular': t1[0].celular ? t1[0].celular : ''};
+        t2 = {'nome': t2[0].nome, 'celular': t2[0].celular ? t2[0].celular : ''};
+
         this.ordemServico['ccbinfo'] = (ccbinfo);
+        this.ordemServico['tecnico1Info'] = t1;
+        this.ordemServico['tecnico2Info'] = t2;
+
+
         this.angularFire.list(`ordemServico/`).set(`${this.ordemServico.id}`, this.ordemServico)
             .then((t: any) => {
                 this.createModal.hide();

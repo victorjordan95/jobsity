@@ -15,7 +15,13 @@
 
           <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" placeholder="Nome do tecnico" [(ngModel)]="tecnico.nome" name="nome"
+            <input type="text" class="form-control" placeholder="Nome do técnico" [(ngModel)]="tecnico.nome" name="nome"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Celular</label>
+            <input type="text" class="form-control" placeholder="Celular do técnico" [(ngModel)]="tecnico.celular" name="celular"
               required>
           </div>
 

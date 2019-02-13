@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <label>Técnico 1</label>
                         <select class="form-control" [(ngModel)]="ordemServico.tecnico1" name="tecnico1" required [disabled]="!(roleUser==='ADMIN')">
-                            <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.nome">
+                            <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
                             </option>
                         </select>
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label>Técnico 2</label>
                         <select class="form-control" [(ngModel)]="ordemServico.tecnico2" name="tecnico2" required [disabled]="!(roleUser==='ADMIN')">
-                            <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.nome">
+                            <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
                             </option>
                         </select>

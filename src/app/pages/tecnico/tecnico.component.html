@@ -1,6 +1,7 @@
 <app-header></app-header>
 <app-modal-tecnico></app-modal-tecnico>
 <app-delete-modal></app-delete-modal>
+<app-loader *ngIf="!isLoaded"></app-loader>
 
 <section class="content">
   <header class="content__title">
@@ -26,6 +27,7 @@
           <thead>
             <tr>
               <th>Nome</th>
+              <th>Celular</th>
               <th>Rua</th>
               <th>Número</th>
               <th>Bairro</th>
@@ -39,6 +41,7 @@
           <tbody>
             <tr *ngFor="let tecnico of tecnicos">
               <td>{{tecnico.nome}}</td>
+              <td>{{tecnico.celular ? tecnico.celular : 'Sem celular cadastrado'}}</td>
               <td>{{tecnico.rua}}</td>
               <td>{{tecnico.numero}} {{tecnico.complemento}}</td>
               <td>{{tecnico.bairro}}</td>

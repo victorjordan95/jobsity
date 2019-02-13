@@ -2,6 +2,7 @@
 <app-ordem-servico-modal></app-ordem-servico-modal>
 <app-delete-modal></app-delete-modal>
 <app-ordem-servico-modal-view></app-ordem-servico-modal-view>
+<app-loader *ngIf="!isLoaded"></app-loader>
 
 <section class="content">
   <header class="content__title">
@@ -42,11 +43,17 @@
           <tbody>
             <tr *ngFor="let order of orders">
               <td>{{order.numeroOS}}</td>
-              <td>{{order.ccbinfo[0].bairro}}</td>
+              <td>{{order.ccbinfo.bairro}}</td>
               <td class="td-overflow">{{order.motivo}}</td>
               <td class="td-overflow">{{order.solucao}}</td>
-              <td>{{order.tecnico1}}</td>
-              <td>{{order.tecnico2}}</td>
+              <td>
+                    {{order.tecnico1Info.nome.split(' ')[0]}} 
+                    {{order.tecnico1Info.nome.split(' ')[order.tecnico1Info.nome.split(' ').length - 1][0]}}.
+              </td>
+              <td>
+                    {{order.tecnico2Info.nome.split(' ')[0]}} 
+                    {{order.tecnico2Info.nome.split(' ')[order.tecnico2Info.nome.split(' ').length - 1][0]}}.
+            </td>
               <td>{{order.status}}</td>
               <td>{{order.dataCadastro | date: 'dd/MM/yyyy'}}</td>
               <td>{{order.dataAtendimento | date: 'dd/MM/yyyy'}}</td>

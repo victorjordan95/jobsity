@@ -5,6 +5,7 @@ export class Tecnico {
     numero: number;
     complemento?: any;
     bairro: String;
+    celular: number;
     cep: number;
     cidade: String;
     uf: string;

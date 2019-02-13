@@ -21,9 +21,9 @@
         </div>
 
         <div class="order-church">
-          <span class="church-title">{{OS.ccbinfo[0].bairro}}</span>
+          <span class="church-title">{{OS.ccbinfo.bairro}}</span>
           <span class="church-address">
-            {{OS.ccbinfo[0].rua}}, {{OS.ccbinfo[0].numero}} - {{OS.ccbinfo[0].bairro}}
+            {{OS.ccbinfo.rua}}, {{OS.ccbinfo.numero}} - {{OS.ccbinfo.bairro}}
           </span>
         </div>
 
@@ -44,11 +44,13 @@
         <div class="order-date">
           <div class="date">
             <span class="b">Técnico 1</span>
-            <span>{{OS.tecnico2}}</span>
+            <span>{{OS.tecnico1Info.nome}}</span>
+            <span>{{OS.tecnico1Info.celular}}</span>
           </div>
           <div class="date">
             <span class="b">Técnico 2</span>
-            <span>{{OS.tecnico2}}</span>
+            <span>{{OS.tecnico2Info.nome}}</span>
+            <span>{{OS.tecnico2Info.celular}}</span>
           </div>
         </div>
 
