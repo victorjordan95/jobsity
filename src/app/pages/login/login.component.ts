@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
                     (data: any) => {
                         localStorage.setItem('usuario', window.btoa(data));
                         this.toastr.success(`Seja bem-vindo ao sistema, ${data[2]}`, 'Bem-vindo!');
-                        this.router.navigate(['/servicos']);
+                        this.router.navigate(['/agenda']);
                     }
                 );
             })
