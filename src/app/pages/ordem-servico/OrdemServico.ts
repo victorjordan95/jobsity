@@ -6,11 +6,11 @@ export class OrdemServico {
     numeroOS: number;
     ccb: Igreja;
     motivo: String;
-    solucao: String;
+    solucao?: String = '';
     tecnico1: Tecnico;
     tecnico2: Tecnico;
     status: String;
     dataCadastro: any;
-    dataAtendimento: any;
-    observacoes: String;
+    dataAtendimento?: any = '';
+    observacoes?: String = '';
 }

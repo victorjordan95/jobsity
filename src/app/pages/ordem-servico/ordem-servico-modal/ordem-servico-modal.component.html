@@ -11,85 +11,107 @@
 
 
                 <div class="modal-body">
+                    <small class="form-text text-muted mb-24">Todos os campos com * são obrigatórios!</small>
                     <input type="hidden" name="id" [(ngModel)]="ordemServico.id">
                     <input type="hidden" name="dataCadastro" [(ngModel)]="ordemServico.dataCadastro">
                     <input type="hidden" name="numeroOS" [(ngModel)]="ordemServico.numeroOS">
 
-                    <!-- <div class="form-group">
-                        <label>Número da Ordem de Serviço</label>
-                        <input type="number" class="form-control" placeholder="Número da Ordem de Serviço"
-                            [(ngModel)]="ordemServico.numeroOS" name="numeroOS" required
-                            [disabled]="!(roleUser==='ADMIN')">
-                    </div> -->
-
-                    <div class="form-group">
-                        <label>Igreja</label>
+                    <div class="form-group w-100">
+                        <label>Igreja *</label>
                         <select class="form-control" [(ngModel)]="ordemServico.ccb" name="ccb" required
-                            [disabled]="!(roleUser==='ADMIN')">
+                            [disabled]="!(roleUser==='ADMIN')" #ccb="ngModel">
                             <option *ngFor="let church of churches" [ngValue]="church.id">
                                 {{church.bairro}}
                             </option>
                         </select>
+                        <small *ngIf="ccb?.invalid && (ccb?.dirty || ccb?.touched)" 
+                                class="danger form-text text-muted">
+                            <span *ngIf="ccb?.errors.required">
+                                Campo "igreja" é obrigatório!
+                            </span>
+                        </small>
                     </div>
 
                     <div class="form-group w-100">
-                        <label>Motivo</label>
+                        <label>Motivo *</label>
                         <textarea class="textarea" placeholder="Motivo da Manutenção" required
                             [(ngModel)]="ordemServico.motivo" name="motivo" rows="3"
-                            [disabled]="!(roleUser==='ADMIN')">
+                            [disabled]="!(roleUser==='ADMIN')" #motivo="ngModel">
                         </textarea>
+                        <small *ngIf="motivo?.invalid && (motivo?.dirty || motivo?.touched)" 
+                                class="danger form-text text-muted">
+                            <span *ngIf="motivo?.errors.required">
+                                O campo "motivo" é obrigatório!
+                            </span>
+                        </small>
                     </div>
 
                     <div class="form-group w-100">
                         <label>Solução</label>
                         <textarea class="textarea" placeholder="Descreva a solução proposta"
-                            [(ngModel)]="ordemServico.solucao" required name="solucao" rows="3">
+                            [(ngModel)]="ordemServico.solucao" name="solucao" rows="3">
                         </textarea>
+                        
                     </div>
 
                     <div class="form-group">
-                        <label>Técnico 1</label>
-                        <select class="form-control" [(ngModel)]="ordemServico.tecnico1" name="tecnico1" required [disabled]="!(roleUser==='ADMIN')">
+                        <label>Técnico 1 *</label>
+                        <select class="form-control" [(ngModel)]="ordemServico.tecnico1" #tecnico1="ngModel" name="tecnico1" required [disabled]="!(roleUser==='ADMIN')">
                             <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
                             </option>
                         </select>
+                        <small *ngIf="tecnico1?.invalid && (tecnico1.dirty || tecnico1.touched)" 
+                                class="danger form-text text-muted">
+                            <span *ngIf="tecnico1?.errors.required">
+                                Campo "Técnico 1" é obrigatório!
+                            </span>
+                        </small>
                     </div>
 
                     <div class="form-group">
-                        <label>Técnico 2</label>
-                        <select class="form-control" [(ngModel)]="ordemServico.tecnico2" name="tecnico2" required [disabled]="!(roleUser==='ADMIN')">
+                        <label>Técnico 2 *</label>
+                        <select class="form-control" #tecnico2="ngModel" [(ngModel)]="ordemServico.tecnico2" name="tecnico2" required [disabled]="!(roleUser==='ADMIN')">
                             <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
                             </option>
                         </select>
+                        <small *ngIf="tecnico2.invalid && (tecnico2.dirty || tecnico2.touched)" 
+                                class="danger form-text text-muted">
+                            <span *ngIf="tecnico2?.errors.required">
+                                Campo "Técnico 2" é obrigatório!
+                            </span>
+                        </small>
                     </div>
 
                     <div class="form-group">
-                        <label>Status</label>
+                        <label>Status *</label>
                         <select class="form-control" [(ngModel)]="ordemServico.status" name="status" required
-                            [disabled]="!(roleUser==='ADMIN')">
+                            [disabled]="!(roleUser==='ADMIN')" #status="ngModel">
                             <option *ngFor="let status of allStatus" [ngValue]="status.nome">
                                 {{status.nome}}
                             </option>
                         </select>
+                        <small *ngIf="status?.invalid && (status?.dirty || status?.touched)" 
+                                class="danger form-text text-muted">
+                            <span *ngIf="status?.errors.required">
+                                Campo "Status" é obrigatório!
+                            </span>
+                        </small>
                     </div>
 
                     <div class="form-group">
                         <label>Data de Atendimento</label>
                         <input type="date" class="form-control" placeholder="Técnico"
-                            [(ngModel)]="ordemServico.dataAtendimento" name="dataAtendimento" required
+                            [(ngModel)]="ordemServico.dataAtendimento" name="dataAtendimento"
                             [disabled]="!(roleUser==='ADMIN')">
                     </div>
 
                     <div class="form-group w-100">
                         <label>Observações</label>
-                        <textarea class="textarea" placeholder="Observações" required
-                            [(ngModel)]="ordemServico.observacoes" name="observacoes" rows="5">
-            </textarea>
+                        <textarea class="textarea" placeholder="Observações" [(ngModel)]="ordemServico.observacoes" name="observacoes" rows="5">
+                        </textarea>
                     </div>
-
-
 
                 </div>
                 <div class="modal-footer">
