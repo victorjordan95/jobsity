@@ -60,7 +60,7 @@ export class AgendamentoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userId = user.uid;
+        this.userId = atob(localStorage.getItem('usuario')).split(',')[1];
         this.getEvents();
     }
 
