@@ -1,186 +1,199 @@
 <div class="modal fade" bsModal #createModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" (click)="createModal.hide()">&times;</button>
-        <h4 class="modal-title">Cadastro de Igreja</h4>
-      </div>
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="createModal.hide()">&times;</button>
+                <h4 class="modal-title">Cadastro de Igreja</h4>
+            </div>
 
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-
-
-        <div class="modal-body">
-          <input type="hidden" name="id" [(ngModel)]="igreja.id">
-
-          <div class="form-group">
-            <label>Código CCB</label>
-            <input type="text" class="form-control" placeholder="Código da Igreja" [(ngModel)]="igreja.codCCB" name="codCCB"
-              required #codigo="ngModel">
-            <small *ngIf="codigo?.invalid && (codigo?.dirty || codigo?.touched)" class="danger form-text text-muted">
-              <span *ngIf="codigo?.errors.required">
-                Campo "Código CCB" é obrigatório!
-              </span>
-            </small>
-          </div>
-
-          <div class="form-group">
-            <label>Rua</label>
-            <input type="text" class="form-control" placeholder="Nome da Rua" [(ngModel)]="igreja.rua" name="rua"
-              required #rua='ngModel'>
-              <small *ngIf="rua?.invalid && (rua?.dirty || rua?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="rua?.errors.required">
-                      Campo "Rua" é obrigatório!
-                    </span>
-                  </small>
-          </div>
-
-          <div class="form-group">
-            <label>Número</label>
-            <input type="text" class="form-control" placeholder="Número da igreja" [(ngModel)]="igreja.numero" name="numero"
-              required>
-              <small *ngIf="numero?.invalid && (numero?.dirty || numero?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="numero?.errors.required">
-                      Campo "Número" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
 
 
-          <div class="form-group">
-            <label>Bairro</label>
-            <input type="text" class="form-control" placeholder="Nome do Bairro" [(ngModel)]="igreja.bairro" name="bairro"
-              required #bairro="ngModel">
-              <small *ngIf="bairro?.invalid && (bairro?.dirty || bairro?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="bairro?.errors.required">
-                      Campo "Código CCB" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" [(ngModel)]="igreja.id">
 
-          <div class="form-group">
-            <label>CEP</label>
-            <input type="text" class="form-control" placeholder="CEP" [(ngModel)]="igreja.cep" name="cep" required #cep="ngModel">
-            <small *ngIf="cep?.invalid && (cep?.dirty || cep?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="cep?.errors.required">
-                      Campo "CEP" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Código CCB</label>
+                        <input type="text" class="form-control" placeholder="Código da Igreja"
+                            [(ngModel)]="igreja.codCCB" name="codCCB" required #codigo="ngModel">
+                        <small *ngIf="codigo?.invalid && (codigo?.dirty || codigo?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="codigo?.errors.required">
+                                Campo "Código CCB" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Cidade</label>
-            <input type="text" class="form-control" placeholder="Cidade" [(ngModel)]="igreja.cidade" name="cidade"
-              required #cidade="ngModel">
-              <small *ngIf="cidade?.invalid && (cidade?.dirty || cidade?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="cidade?.errors.required">
-                      Campo "Código CCB" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Rua</label>
+                        <input type="text" class="form-control" placeholder="Nome da Rua" [(ngModel)]="igreja.rua"
+                            name="rua" required #rua='ngModel'>
+                        <small *ngIf="rua?.invalid && (rua?.dirty || rua?.touched)" class="danger form-text text-muted">
+                            <span *ngIf="rua?.errors.required">
+                                Campo "Rua" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>UF</label>
-            <select class="form-control" [(ngModel)]="igreja.uf" name="uf" required #uf="ngModel">
-              <option *ngFor="let estado of states" [ngValue]="estado.value">
-                {{estado.estado}}
-              </option>
-            </select>
-            <small *ngIf="uf?.invalid && (uf?.dirty || uf?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="uf?.errors.required">
-                      Campo "UF" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Número</label>
+                        <input type="text" class="form-control" placeholder="Número da igreja"
+                            [(ngModel)]="igreja.numero" name="numero" required #numero="ngModel">
+                        <small *ngIf="numero?.invalid && (numero?.dirty || numero?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="numero?.errors.required">
+                                Campo "Número" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Encarregado de Manutenção</label>
-            <input type="text" class="form-control" placeholder="Encarregado de Manutenção" [(ngModel)]="igreja.tecnico"
-              name="tecnico" required #tecnico="ngModel">
-              <small *ngIf="tecnico?.invalid && (tecnico?.dirty || tecnico?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="codigo?.errors.required">
-                      Campo "Encarregado de Manutenção" é obrigatório!
-                    </span>
-                  </small>
-          </div>
 
-          <div class="form-group">
-            <label>Número Celular</label>
-            <input type="text" class="form-control" placeholder="Número de Celular" [(ngModel)]="igreja.numCel" name="numCel"
-              required #numCel="ngModel">
-              <small *ngIf="numCel?.invalid && (numCel?.dirty || numCel?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="numCel?.errors.required">
-                      Campo "Número Celular" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" class="form-control" placeholder="Nome do Bairro" [(ngModel)]="igreja.bairro"
+                            name="bairro" required #bairro="ngModel">
+                        <small *ngIf="bairro?.invalid && (bairro?.dirty || bairro?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="bairro?.errors.required">
+                                Campo "Bairro" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <h4 class="section-separator">Informações do Órgão</h4>
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" class="form-control" placeholder="CEP" [(ngModel)]="igreja.cep" name="cep"
+                            required #cep="ngModel">
+                        <small *ngIf="cep?.invalid && (cep?.dirty || cep?.touched)" class="danger form-text text-muted">
+                            <span *ngIf="cep?.errors.required">
+                                Campo "CEP" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Marca</label>
-            <input type="text" class="form-control" placeholder="Marca do orgao" [(ngModel)]="igreja.marca" name="marca"
-              required #marca="ngModel">
-              <small *ngIf="marca?.invalid && (marca?.dirty || marca?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="marca?.errors.required">
-                      Campo "Marca" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control" placeholder="Cidade" [(ngModel)]="igreja.cidade"
+                            name="cidade" required #cidade="ngModel">
+                        <small *ngIf="cidade?.invalid && (cidade?.dirty || cidade?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="cidade?.errors.required">
+                                Campo "Cidade" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Modelo</label>
-            <input type="text" class="form-control" placeholder="Modelo do orgao" [(ngModel)]="igreja.modelo" name="modelo"
-              required #modelo="ngModel">
-              <small *ngIf="modelo?.invalid && (modelo?.dirty || modelo?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="modelo?.errors.required">
-                      Campo "Modelo" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>UF</label>
+                        <select class="form-control" [(ngModel)]="igreja.uf" name="uf" required #uf="ngModel">
+                            <option *ngFor="let estado of states" [ngValue]="estado.value">
+                                {{estado.estado}}
+                            </option>
+                        </select>
+                        <small *ngIf="uf?.invalid && (uf?.dirty || uf?.touched)" class="danger form-text text-muted">
+                            <span *ngIf="uf?.errors.required">
+                                Campo "UF" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Número do Órgão</label>
-            <input type="number" class="form-control" placeholder="Número do orgao" [(ngModel)]="igreja.numeroOrgao"
-              name="numeroOrgao" required #numeroOrgao="ngModel">
-              <small *ngIf="numeroOrgao?.invalid && (numeroOrgao?.dirty || numeroOrgao?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="numeroOrgao?.errors.required">
-                      Campo "Número do Órgão" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Encarregado de Manutenção</label>
+                        <input type="text" class="form-control" placeholder="Encarregado de Manutenção"
+                            [(ngModel)]="igreja.tecnico" name="tecnico" required #tecnico="ngModel">
+                        <small *ngIf="tecnico?.invalid && (tecnico?.dirty || tecnico?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="codigo?.errors.required">
+                                Campo "Encarregado de Manutenção" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Número de Patrimônio</label>
-            <input type="number" class="form-control" placeholder="Número de patrimônio" [(ngModel)]="igreja.numeroPatrimonio"
-              name="numeroPatrimonio" required #numeroPatrimonio="ngModel">
-              <small *ngIf="numeroPatrimonio?.invalid && (numeroPatrimonio?.dirty || numeroPatrimonio?.touched)" class="danger form-text text-muted">
-                    <span *ngIf="numeroPatrimonio?.errors.required">
-                      Campo "Número de Patrimônio" é obrigatório!
-                    </span>
-                  </small>
-          </div>
+                    <div class="form-group">
+                        <label>Número Celular</label>
+                        <input type="text" class="form-control" placeholder="Número de Celular"
+                            [(ngModel)]="igreja.numCel" name="numCel" required #numCel="ngModel">
+                        <small *ngIf="numCel?.invalid && (numCel?.dirty || numCel?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="numCel?.errors.required">
+                                Campo "Número Celular" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
 
-          <div class="form-group">
-            <label>Acessório</label>
-            <input type="text" class="form-control" placeholder="Número de acessório" [(ngModel)]="igreja.acessorio"
-              name="acessorio">
-          </div>
+                    <h4 class="section-separator">Informações do Órgão</h4>
 
-          <div class="form-group">
-            <label>Número de Série do Acessório</label>
-            <input type="text" class="form-control" placeholder="Número de Série do Acessório" [(ngModel)]="igreja.numeroSerieAcessorio"
-              name="numeroSerieAcessorio">
-          </div>
+                    <div class="form-group">
+                        <label>Marca</label>
+                        <input type="text" class="form-control" placeholder="Marca do orgao" [(ngModel)]="igreja.marca"
+                            name="marca" required #marca="ngModel">
+                        <small *ngIf="marca?.invalid && (marca?.dirty || marca?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="marca?.errors.required">
+                                Campo "Marca" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" class="form-control" placeholder="Modelo do orgao"
+                            [(ngModel)]="igreja.modelo" name="modelo" required #modelo="ngModel">
+                        <small *ngIf="modelo?.invalid && (modelo?.dirty || modelo?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="modelo?.errors.required">
+                                Campo "Modelo" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Número do Órgão</label>
+                        <input type="number" class="form-control" placeholder="Número do orgao"
+                            [(ngModel)]="igreja.numeroOrgao" name="numeroOrgao" required #numeroOrgao="ngModel">
+                        <small *ngIf="numeroOrgao?.invalid && (numeroOrgao?.dirty || numeroOrgao?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="numeroOrgao?.errors.required">
+                                Campo "Número do Órgão" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Número de Patrimônio</label>
+                        <input type="number" class="form-control" placeholder="Número de patrimônio"
+                            [(ngModel)]="igreja.numeroPatrimonio" name="numeroPatrimonio" required
+                            #numeroPatrimonio="ngModel">
+                        <small
+                            *ngIf="numeroPatrimonio?.invalid && (numeroPatrimonio?.dirty || numeroPatrimonio?.touched)"
+                            class="danger form-text text-muted">
+                            <span *ngIf="numeroPatrimonio?.errors.required">
+                                Campo "Número de Patrimônio" é obrigatório!
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Acessório</label>
+                        <input type="text" class="form-control" placeholder="Número de acessório"
+                            [(ngModel)]="igreja.acessorio" name="acessorio">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Número de Série do Acessório</label>
+                        <input type="text" class="form-control" placeholder="Número de Série do Acessório"
+                            [(ngModel)]="igreja.numeroSerieAcessorio" name="numeroSerieAcessorio">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" (click)="createModal.hide()">Cancelar</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!f.valid">Salvar</button>
+                </div>
+
+            </form>
 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" (click)="createModal.hide()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="!f.valid">Salvar</button>
-        </div>
-
-      </form>
-
     </div>
-  </div>
 </div>

@@ -46,8 +46,13 @@ export class OrdemServicoComponent implements OnInit {
     getOrdemServico() {
         this.isLoaded = false;
         this.angularFire.list(`ordemServico`).valueChanges().subscribe(
-            data => {
-                this.orders = data;
+            (data: any) => {
+                const user = atob(localStorage.getItem('usuario')).split(',');
+                if (user[3] === 'ADMIN') {
+                    this.orders = data;
+                } else {
+                    this.orders = data.filter(ordem => ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2] );
+                }
                 this.isLoaded = true;
             }
         );

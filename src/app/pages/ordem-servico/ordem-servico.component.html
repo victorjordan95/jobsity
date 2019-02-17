@@ -47,16 +47,18 @@
               <td class="td-overflow">{{order.motivo}}</td>
               <td class="td-overflow">{{order.solucao}}</td>
               <td>
-                    {{order.tecnico1Info.nome.split(' ')[0]}} 
-                    {{order.tecnico1Info.nome.split(' ')[order.tecnico1Info.nome.split(' ').length - 1][0]}}.
+                {{order.tecnico1Info.nome.split(' ')[0]}}
+                {{order.tecnico1Info.nome.split(' ')[order.tecnico1Info.nome.split(' ').length - 1][0]}}.
               </td>
               <td>
-                    {{order.tecnico2Info.nome.split(' ')[0]}} 
-                    {{order.tecnico2Info.nome.split(' ')[order.tecnico2Info.nome.split(' ').length - 1][0]}}.
-            </td>
+                {{order.tecnico2Info.nome.split(' ')[0]}}
+                {{order.tecnico2Info.nome.split(' ')[order.tecnico2Info.nome.split(' ').length - 1][0]}}.
+              </td>
               <td>{{order.status}}</td>
               <td>{{order.dataCadastro | date: 'dd/MM/yyyy'}}</td>
-              <td>{{order.dataAtendimento | date: 'dd/MM/yyyy'}}</td>
+              <td>{{order.dataAtendimento | date: 'dd/MM/yyyy'}}
+                <span *ngIf="!order.dataAtendimento">Pendente</span>
+              </td>
               <td class="td-overflow">{{order.observacoes}}</td>
               <td class="text-right">
                 <div dropdown>
