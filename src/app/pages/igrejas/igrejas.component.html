@@ -18,7 +18,7 @@
     <div class="card-body">
       <div class="data-table__header">
         <div class="form-group data-table__filter">
-          <input placeholder="Filter all columns" class="form-control">
+          <input placeholder="Filtrar por todas as colunas" [(ngModel)]="filter" class="form-control">
           <i class="form-group__bar"></i>
         </div>
       </div>
@@ -44,7 +44,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let igreja of igrejas">
+            <tr *ngFor="let igreja of igrejas | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
               <td>{{igreja.codCCB}}</td>
               <td>{{igreja.tecnico}}</td>
               <td>{{igreja.bairro}}</td>
@@ -71,6 +71,7 @@
             </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
       </div>
       <ng-template #notLoaded>
         <p>Loading...</p>

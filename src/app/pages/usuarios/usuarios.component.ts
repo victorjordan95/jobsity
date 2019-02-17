@@ -16,16 +16,14 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(ModalUsuariosComponent) modalComponent: ModalUsuariosComponent;
     public usuarios;
     public isLoaded = true;
+    public filter = '';
+    public page = 1;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth, private toastr: ToastrService) {
     }
 
     ngOnInit() {
-        this.afAuth.authState.subscribe(user => {
-            if (user) {
-                this.getUsuarios();
-            }
-        });
+        this.getUsuarios();
     }
 
     showModal(e?) {

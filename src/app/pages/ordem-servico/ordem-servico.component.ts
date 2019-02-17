@@ -19,16 +19,14 @@ export class OrdemServicoComponent implements OnInit {
     @ViewChild(OrdemServicoModalViewComponent) viewModal: OrdemServicoModalViewComponent;
     public orders;
     public isLoaded = true;
+    public filter = '';
+    public page = 1;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth, public shared: SharedService) {
     }
 
     ngOnInit() {
-        this.afAuth.authState.subscribe(user => {
-            if (user) {
-                this.getOrdemServico();
-            }
-        });
+        this.getOrdemServico();
     }
 
     showModal(e?) {
@@ -51,8 +49,11 @@ export class OrdemServicoComponent implements OnInit {
                 if (user[3] === 'ADMIN') {
                     this.orders = data;
                 } else {
-                    this.orders = data.filter(ordem => ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2] );
+                    this.orders = data.filter(ordem => ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2]);
                 }
+                this.orders.forEach(element => {
+                    element['ccbName'] = element.ccbinfo['bairro'];
+                });
                 this.isLoaded = true;
             }
         );

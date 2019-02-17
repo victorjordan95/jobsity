@@ -48,7 +48,7 @@ export class AgendamentoComponent implements OnInit {
             const clickedEvent = this.calendarOptions.events.filter(element => element.id === event.id);
             this.showModal(clickedEvent);
         },
-        dayClick: function(date, jsEvent, view) {
+        dayClick: function (date, jsEvent, view) {
             alert('Clicked on: ' + date.format());
         },
         timeFormat: 'H(:mm)',
@@ -60,12 +60,8 @@ export class AgendamentoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.afAuth.authState.subscribe(user => {
-            if (user) {
-                this.userId = user.uid;
-                this.getEvents();
-            }
-        });
+        this.userId = user.uid;
+        this.getEvents();
     }
 
     showModal(event?) {

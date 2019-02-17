@@ -16,16 +16,14 @@ export class OrgaoComponent implements OnInit {
     @ViewChild(DeleteModalComponent) deleteModal: DeleteModalComponent;
     public orgaos;
     public isLoaded = true;
+    public filter = '';
+    public page = 1;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth) {
     }
 
     ngOnInit() {
-        this.afAuth.authState.subscribe(user => {
-            if (user) {
-                this.getOrgaos();
-            }
-        });
+        this.getOrgaos();
     }
 
     showModal(e?) {

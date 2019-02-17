@@ -16,16 +16,14 @@ export class TecnicoComponent implements OnInit {
     @ViewChild(DeleteModalComponent) deleteModal: DeleteModalComponent;
     public tecnicos;
     public isLoaded = true;
+    public filter = '';
+    public page = 1;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth) {
     }
 
     ngOnInit() {
-        this.afAuth.authState.subscribe(user => {
-            if (user) {
-                this.getTecnicos();
-            }
-        });
+        this.getTecnicos();
     }
 
     showModal(e?) {

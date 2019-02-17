@@ -18,6 +18,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {NgSelectizeModule} from 'ng-selectize';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -101,7 +103,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       tapToDismiss: true,
       closeButton: true
     }),
-    NgSelectizeModule
+    Ng2SearchPipeModule,
+    NgSelectizeModule,
+    NgxPaginationModule
   ],
   providers: [
     {

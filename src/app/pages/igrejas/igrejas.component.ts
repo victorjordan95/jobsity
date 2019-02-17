@@ -16,6 +16,8 @@ export class IgrejasComponent implements OnInit {
 
     public igrejas;
     public isLoaded = true;
+    public filter = '';
+    public page = 1;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth) {
     }

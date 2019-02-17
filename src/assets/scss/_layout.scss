@@ -78,8 +78,12 @@
 .table-responsive {
   width: 100%;
   margin-bottom: 15px;
-  padding: 0 0 128px;
   overflow-y: hidden;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   border: 1px solid #ddd;
+}
+
+.ngx-pagination {
+  margin: 48px 0;
+  text-align: center;
 }

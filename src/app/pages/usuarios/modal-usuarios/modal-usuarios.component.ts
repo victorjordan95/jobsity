@@ -5,7 +5,6 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Usuario } from '../Usuario';
 import { ToastrService } from 'ngx-toastr';
-import { debug } from 'util';
 
 @Component({
     selector: 'app-modal-usuarios',
