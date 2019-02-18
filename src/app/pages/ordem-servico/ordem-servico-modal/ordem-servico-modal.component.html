@@ -7,17 +7,17 @@
                 <h4 class="modal-title">{{isEditing ? 'Edição' : 'Cadastro'}} de Ordem de Serviço</h4>
             </div>
 
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
 
 
                 <div class="modal-body">
                     <!-- <small class="form-text text-muted mb-24">Todos os campos com * são obrigatórios!</small> -->
-                    <input type="hidden" name="id" [(ngModel)]="ordemServico.id">
-                    <input type="hidden" name="dataCadastro" [(ngModel)]="ordemServico.dataCadastro">
-                    <input type="hidden" name="numeroOS" [(ngModel)]="ordemServico.numeroOS">
+                    <input autocomplete="false"type="hidden" name="id" [(ngModel)]="ordemServico.id">
+                    <input autocomplete="false"type="hidden" name="dataCadastro" [(ngModel)]="ordemServico.dataCadastro">
+                    <input autocomplete="false"type="hidden" name="numeroOS" [(ngModel)]="ordemServico.numeroOS">
 
                     <div class="form-group w-100">
-                        <label>Igreja *</label>
+                        <label>Igreja</label>
                         <select class="form-control" [(ngModel)]="ordemServico.ccb" name="ccb" 
                             [disabled]="!(roleUser==='ADMIN')" #ccb="ngModel">
                             <option *ngFor="let church of churches" [ngValue]="church.id">
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="form-group w-100">
-                        <label>Motivo *</label>
+                        <label>Motivo</label>
                         <textarea class="textarea" placeholder="Motivo da Manutenção" 
                             [(ngModel)]="ordemServico.motivo" name="motivo" rows="3"
                             [disabled]="!(roleUser==='ADMIN')" #motivo="ngModel">
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Técnico 1 *</label>
+                        <label>Técnico 1</label>
                         <select class="form-control" [(ngModel)]="ordemServico.tecnico1" #tecnico1="ngModel" name="tecnico1"  [disabled]="!(roleUser==='ADMIN')">
                             <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Técnico 2 *</label>
+                        <label>Técnico 2</label>
                         <select class="form-control" #tecnico2="ngModel" [(ngModel)]="ordemServico.tecnico2" name="tecnico2"  [disabled]="!(roleUser==='ADMIN')">
                             <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Status *</label>
+                        <label>Status</label>
                         <select class="form-control" [(ngModel)]="ordemServico.status" name="status" 
                             [disabled]="!(roleUser==='ADMIN')" #status="ngModel">
                             <option *ngFor="let status of allStatus" [ngValue]="status.nome">
@@ -102,7 +102,7 @@
 
                     <div class="form-group">
                         <label>Data de Atendimento</label>
-                        <input type="date" class="form-control" placeholder="Técnico"
+                        <input autocomplete="false"type="date" class="form-control" placeholder="Técnico"
                             [(ngModel)]="ordemServico.dataAtendimento" name="dataAtendimento"
                             [disabled]="!(roleUser==='ADMIN')">
                     </div>

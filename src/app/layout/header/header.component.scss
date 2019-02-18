@@ -43,10 +43,6 @@
     min-width: calc(#{$sidebar-width} - 2rem);
   }
 
-  @include media-breakpoint-down(sm) {
-    display: none;
-  }
-
   &>h1 {
     line-height: 100%;
     font-size: 1.3rem;

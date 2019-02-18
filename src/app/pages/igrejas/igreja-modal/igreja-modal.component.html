@@ -7,15 +7,15 @@
                 <h4 class="modal-title">Cadastro de Igreja</h4>
             </div>
 
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
 
 
                 <div class="modal-body">
-                    <input type="hidden" name="id" [(ngModel)]="igreja.id">
+                    <input autocomplete="false"type="hidden" name="id" [(ngModel)]="igreja.id">
 
                     <div class="form-group">
                         <label>Código CCB</label>
-                        <input type="text" class="form-control" placeholder="Código da Igreja"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Código da Igreja"
                             [(ngModel)]="igreja.codCCB" name="codCCB" required #codigo="ngModel">
                         <small *ngIf="codigo?.invalid && (codigo?.dirty || codigo?.touched)"
                             class="danger form-text text-muted">
@@ -27,7 +27,7 @@
 
                     <div class="form-group">
                         <label>Rua</label>
-                        <input type="text" class="form-control" placeholder="Nome da Rua" [(ngModel)]="igreja.rua"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Nome da Rua" [(ngModel)]="igreja.rua"
                             name="rua" required #rua='ngModel'>
                         <small *ngIf="rua?.invalid && (rua?.dirty || rua?.touched)" class="danger form-text text-muted">
                             <span *ngIf="rua?.errors.required">
@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                         <label>Número</label>
-                        <input type="text" class="form-control" placeholder="Número da igreja"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Número da igreja"
                             [(ngModel)]="igreja.numero" name="numero" required #numero="ngModel">
                         <small *ngIf="numero?.invalid && (numero?.dirty || numero?.touched)"
                             class="danger form-text text-muted">
@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label>Bairro</label>
-                        <input type="text" class="form-control" placeholder="Nome do Bairro" [(ngModel)]="igreja.bairro"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Nome do Bairro" [(ngModel)]="igreja.bairro"
                             name="bairro" required #bairro="ngModel">
                         <small *ngIf="bairro?.invalid && (bairro?.dirty || bairro?.touched)"
                             class="danger form-text text-muted">
@@ -63,7 +63,7 @@
 
                     <div class="form-group">
                         <label>CEP</label>
-                        <input type="text" class="form-control" placeholder="CEP" [(ngModel)]="igreja.cep" name="cep"
+                        <input autocomplete="false" type="text" class="form-control" placeholder="CEP" [(ngModel)]="igreja.cep" name="cep"
                             required #cep="ngModel" mask="00000-000">
                         <small *ngIf="cep?.invalid && (cep?.dirty || cep?.touched)" class="danger form-text text-muted">
                             <span *ngIf="cep?.errors.required">
@@ -74,7 +74,7 @@
 
                     <div class="form-group">
                         <label>Cidade</label>
-                        <input type="text" class="form-control" placeholder="Cidade" [(ngModel)]="igreja.cidade"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Cidade" [(ngModel)]="igreja.cidade"
                             name="cidade" required #cidade="ngModel">
                         <small *ngIf="cidade?.invalid && (cidade?.dirty || cidade?.touched)"
                             class="danger form-text text-muted">
@@ -100,7 +100,7 @@
 
                     <div class="form-group">
                         <label>Encarregado de Manutenção</label>
-                        <input type="text" class="form-control" placeholder="Encarregado de Manutenção"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Encarregado de Manutenção"
                             [(ngModel)]="igreja.tecnico" name="tecnico" #tecnico="ngModel">
                         <small *ngIf="tecnico?.invalid && (tecnico?.dirty || tecnico?.touched)"
                             class="danger form-text text-muted">
@@ -112,7 +112,7 @@
 
                     <div class="form-group">
                         <label>Número Celular</label>
-                        <input type="text" class="form-control" placeholder="Número de Celular"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Número de Celular"
                             [(ngModel)]="igreja.numCel" name="numCel" #numCel="ngModel" mask="(00) 0000-0000?0">
                         <small *ngIf="numCel?.invalid && (numCel?.dirty || numCel?.touched)"
                             class="danger form-text text-muted">
@@ -126,7 +126,7 @@
 
                     <div class="form-group">
                         <label>Marca</label>
-                        <input type="text" class="form-control" placeholder="Marca do orgao" [(ngModel)]="igreja.marca"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Marca do orgao" [(ngModel)]="igreja.marca"
                             name="marca" #marca="ngModel">
                         <small *ngIf="marca?.invalid && (marca?.dirty || marca?.touched)"
                             class="danger form-text text-muted">
@@ -138,7 +138,7 @@
 
                     <div class="form-group">
                         <label>Modelo</label>
-                        <input type="text" class="form-control" placeholder="Modelo do orgao"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Modelo do orgao"
                             [(ngModel)]="igreja.modelo" name="modelo" #modelo="ngModel">
                         <small *ngIf="modelo?.invalid && (modelo?.dirty || modelo?.touched)"
                             class="danger form-text text-muted">
@@ -150,7 +150,7 @@
 
                     <div class="form-group">
                         <label>Número do Órgão</label>
-                        <input type="number" class="form-control" placeholder="Número do orgao"
+                        <input autocomplete="false"type="number" class="form-control" placeholder="Número do orgao"
                             [(ngModel)]="igreja.numeroOrgao" name="numeroOrgao" #numeroOrgao="ngModel">
                         <small *ngIf="numeroOrgao?.invalid && (numeroOrgao?.dirty || numeroOrgao?.touched)"
                             class="danger form-text text-muted">
@@ -162,7 +162,7 @@
 
                     <div class="form-group">
                         <label>Número de Patrimônio</label>
-                        <input type="number" class="form-control" placeholder="Número de patrimônio"
+                        <input autocomplete="false"type="number" class="form-control" placeholder="Número de patrimônio"
                             [(ngModel)]="igreja.numeroPatrimonio" name="numeroPatrimonio"
                             #numeroPatrimonio="ngModel">
                         <small
@@ -176,13 +176,13 @@
 
                     <div class="form-group">
                         <label>Acessório</label>
-                        <input type="text" class="form-control" placeholder="Número de acessório"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Número de acessório"
                             [(ngModel)]="igreja.acessorio" name="acessorio">
                     </div>
 
                     <div class="form-group">
                         <label>Número de Série do Acessório</label>
-                        <input type="text" class="form-control" placeholder="Número de Série do Acessório"
+                        <input autocomplete="false"type="text" class="form-control" placeholder="Número de Série do Acessório"
                             [(ngModel)]="igreja.numeroSerieAcessorio" name="numeroSerieAcessorio">
                     </div>
 

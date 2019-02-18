@@ -14,6 +14,7 @@ export class ModalTecnicoComponent implements OnInit {
 
     @ViewChild('createModal') createModal: ModalDirective;
     public tecnico = new Tecnico;
+    public isEditing;
 
     public states = [
         { value: '', estado: 'Selecione um estado' },
@@ -54,12 +55,14 @@ export class ModalTecnicoComponent implements OnInit {
     showModal(e?) {
         if (e) {
             this.tecnico = e;
+            this.isEditing = true;
         } else {
             this.tecnico = new Tecnico;
             const x = new Date();
             this.tecnico.id = `${x.getDate()}${x.getMonth() + 1}${x.getUTCFullYear()}` +
                 `${x.getHours()}${x.getMinutes()}${x.getSeconds()}${x.getMilliseconds()}`;
             this.tecnico.uf = this.states[0].value;
+            this.isEditing = false;
         }
         this.createModal.show();
     }

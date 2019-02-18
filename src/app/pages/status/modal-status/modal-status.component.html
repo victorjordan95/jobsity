@@ -7,15 +7,15 @@
         <h4 class="modal-title">{{isEditing ? 'Edição' : 'Cadastro'}} de Status</h4>
       </div>
 
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
 
 
         <div class="modal-body">
-          <input type="hidden" name="id" [(ngModel)]="status.id">
+          <input autocomplete="false"type="hidden" name="id" [(ngModel)]="status.id">
 
           <div class="form-group">
             <label>Nome Status</label>
-            <input type="text" class="form-control" placeholder="Nome do Evento" [(ngModel)]="status.nome" name="nome"
+            <input autocomplete="false"type="text" class="form-control" placeholder="Nome do Evento" [(ngModel)]="status.nome" name="nome"
               required>
           </div>
 

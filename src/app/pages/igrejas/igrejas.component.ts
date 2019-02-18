@@ -31,7 +31,8 @@ export class IgrejasComponent implements OnInit {
     }
 
     delete(e) {
-        this.deleteModal.showModal(e.id, e.bairro, 'igrejas');
+        console.log(e);
+        this.deleteModal.showModal(e.id, e.ccbName, 'igrejas');
     }
 
     getIgrejas() {

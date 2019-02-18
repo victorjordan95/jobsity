@@ -7,7 +7,7 @@ export class Igreja {
     rua: String;
     numero: number;
     bairro: String;
-    cep: number;
+    cep: any;
     cidade: String;
     uf: any;
     tecnico: String = '';
