@@ -56,14 +56,18 @@ export class OrdemServicoModalComponent implements OnInit {
         let t1 = this.tecnicos.filter(id => id.id === form.value.tecnico1);
         let t2 = this.tecnicos.filter(id => id.id === form.value.tecnico2);
 
-        ccbinfo = ccbinfo[0];
-        t1 = {'nome': t1[0].nome, 'celular': t1[0].celular ? t1[0].celular : ''};
-        t2 = {'nome': t2[0].nome, 'celular': t2[0].celular ? t2[0].celular : ''};
-
-        this.ordemServico['ccbinfo'] = (ccbinfo);
-        this.ordemServico['tecnico1Info'] = t1;
-        this.ordemServico['tecnico2Info'] = t2;
-
+        if (ccbinfo.length) {
+            ccbinfo = ccbinfo[0];
+            this.ordemServico['ccbinfo'] = (ccbinfo);
+        }
+        if (t1.length) {
+            t1 = {'nome': t1[0].nome, 'celular': t1[0].celular ? t1[0].celular : ''};
+            this.ordemServico['tecnico1Info'] = t1;
+        }
+        if (t2.length) {
+            t2 = {'nome': t2[0].nome, 'celular': t2[0].celular ? t2[0].celular : ''};
+            this.ordemServico['tecnico2Info'] = t2;
+        }
 
         this.angularFire.list(`ordemServico/`).set(`${this.ordemServico.id}`, this.ordemServico)
             .then((t: any) => {

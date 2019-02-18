@@ -189,3 +189,14 @@
     }
   }
 }
+
+.btn--brown {
+  background-color: #290c02!important;
+  border-color: #212121!important;
+  color: #ffffff;
+}
+
+.btn--brown:disabled,
+.btn--brown[disabled]{
+  cursor: no-drop;
+}

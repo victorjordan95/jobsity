@@ -3,7 +3,7 @@
 
   <div class="login-left">
     <h2 class="login-title">Sistema de Gestão de Órgãos</h2>
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label for="exampleInputEmail1">E-mail</label>
         <input autocomplete="false"type="email" class="input-group" required autofocus autocomplete="email" ngModel name="email"
@@ -15,7 +15,7 @@
         <input autocomplete="false"type="password" class="input-group" name="senha" placeholder="Digite sua Senha" required ngModel
           autocomplete="current-password">
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="f.form.invalid">Acessar</button>
+      <button type="submit" class="btn btn--brown" [disabled]="f.form.invalid">Acessar</button>
     </form>
   </div>
 
