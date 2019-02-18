@@ -49,10 +49,10 @@
               <td>{{igreja.tecnico}}</td>
               <td>{{igreja.bairro}}</td>
               <td>{{igreja.rua}}, {{igreja.numero}}</td>
-              <td>{{igreja.cep}}</td>
+              <td>{{igreja.cep  | mask: '00000-000'}}</td>
               <td>{{igreja.cidade}}</td>
               <td>{{igreja.uf}}</td>
-              <td>{{igreja.numCel}}</td>
+              <td>{{igreja.numCel | mask: '(00) 0000-0000?0'}}</td>
               <td>{{igreja.marca}}</td>
               <td>{{igreja.modelo}}</td>
               <td>{{igreja.numero}}</td>

@@ -4,12 +4,12 @@ import { Igreja } from '../igrejas/igreja';
 export class OrdemServico {
     id: any;
     numeroOS: number;
-    ccb: Igreja;
-    motivo: String;
+    ccb: Igreja = new Igreja;
+    motivo: String = '';
     solucao?: String = '';
-    tecnico1: Tecnico;
-    tecnico2: Tecnico;
-    status: String;
+    tecnico1: Tecnico = new Tecnico;
+    tecnico2: Tecnico = new Tecnico;
+    status: String = '';
     dataCadastro: any;
     dataAtendimento?: any = '';
     observacoes?: String = '';

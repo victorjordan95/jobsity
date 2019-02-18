@@ -69,12 +69,11 @@ export class IgrejaModalComponent implements OnInit {
     }
 
     dismissModal(): void {
+        this.igreja = new Igreja;
         this.createModal.hide();
     }
 
     onSubmit(form: NgForm): void {
-        form.value.acessorio = form.value.acessorio ? form.value.acessorio : '';
-        form.value.numeroSerieAcessorio = form.value.numeroSerieAcessorio ? form.value.numeroSerieAcessorio : '';
         this.angularFire.list(`igrejas/`).set(`${this.igreja.id}`, form.value).then((t: any) => {
             this.createModal.hide();
             this.igreja = new Igreja;

@@ -3,7 +3,6 @@ import { Tecnico } from '../tecnico/tecnico';
 export class Igreja {
     id: any;
     codCCB: any;
-    tecnico: String;
     nomeIgreja: String;
     rua: String;
     numero: number;
@@ -11,11 +10,12 @@ export class Igreja {
     cep: number;
     cidade: String;
     uf: any;
-    numCel:  number;
-    marca: String;
-    modelo: String;
-    numeroOrgao: any;
-    numeroPatrimonio: any;
-    acessorio?: any;
-    numeroSerieAcessorio?: any;
+    tecnico: String = '';
+    numCel:  number = null;
+    marca: String = '';
+    modelo: String = '';
+    numeroOrgao: any = '';
+    numeroPatrimonio: any = '';
+    acessorio?: any = '';
+    numeroSerieAcessorio?: any = '';
 }

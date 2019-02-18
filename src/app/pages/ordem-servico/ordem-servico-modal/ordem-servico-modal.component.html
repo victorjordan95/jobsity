@@ -11,14 +11,14 @@
 
 
                 <div class="modal-body">
-                    <small class="form-text text-muted mb-24">Todos os campos com * são obrigatórios!</small>
+                    <!-- <small class="form-text text-muted mb-24">Todos os campos com * são obrigatórios!</small> -->
                     <input type="hidden" name="id" [(ngModel)]="ordemServico.id">
                     <input type="hidden" name="dataCadastro" [(ngModel)]="ordemServico.dataCadastro">
                     <input type="hidden" name="numeroOS" [(ngModel)]="ordemServico.numeroOS">
 
                     <div class="form-group w-100">
                         <label>Igreja *</label>
-                        <select class="form-control" [(ngModel)]="ordemServico.ccb" name="ccb" required
+                        <select class="form-control" [(ngModel)]="ordemServico.ccb" name="ccb" 
                             [disabled]="!(roleUser==='ADMIN')" #ccb="ngModel">
                             <option *ngFor="let church of churches" [ngValue]="church.id">
                                 {{church.bairro}}
@@ -34,7 +34,7 @@
 
                     <div class="form-group w-100">
                         <label>Motivo *</label>
-                        <textarea class="textarea" placeholder="Motivo da Manutenção" required
+                        <textarea class="textarea" placeholder="Motivo da Manutenção" 
                             [(ngModel)]="ordemServico.motivo" name="motivo" rows="3"
                             [disabled]="!(roleUser==='ADMIN')" #motivo="ngModel">
                         </textarea>
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label>Técnico 1 *</label>
-                        <select class="form-control" [(ngModel)]="ordemServico.tecnico1" #tecnico1="ngModel" name="tecnico1" required [disabled]="!(roleUser==='ADMIN')">
+                        <select class="form-control" [(ngModel)]="ordemServico.tecnico1" #tecnico1="ngModel" name="tecnico1"  [disabled]="!(roleUser==='ADMIN')">
                             <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
                             </option>
@@ -71,7 +71,7 @@
 
                     <div class="form-group">
                         <label>Técnico 2 *</label>
-                        <select class="form-control" #tecnico2="ngModel" [(ngModel)]="ordemServico.tecnico2" name="tecnico2" required [disabled]="!(roleUser==='ADMIN')">
+                        <select class="form-control" #tecnico2="ngModel" [(ngModel)]="ordemServico.tecnico2" name="tecnico2"  [disabled]="!(roleUser==='ADMIN')">
                             <option *ngFor="let tecnico of tecnicos" [ngValue]="tecnico.id">
                             {{tecnico.nome}}
                             </option>
@@ -86,7 +86,7 @@
 
                     <div class="form-group">
                         <label>Status *</label>
-                        <select class="form-control" [(ngModel)]="ordemServico.status" name="status" required
+                        <select class="form-control" [(ngModel)]="ordemServico.status" name="status" 
                             [disabled]="!(roleUser==='ADMIN')" #status="ngModel">
                             <option *ngFor="let status of allStatus" [ngValue]="status.nome">
                                 {{status.nome}}

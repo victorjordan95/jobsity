@@ -66,6 +66,7 @@ export class ModalTecnicoComponent implements OnInit {
 
     dismissModal() {
         this.createModal.hide();
+        this.tecnico = new Tecnico;
     }
 
     onSubmit(form: NgForm) {

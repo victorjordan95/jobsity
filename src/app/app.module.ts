@@ -20,6 +20,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import {NgSelectizeModule} from 'ng-selectize';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxMaskModule} from 'ngx-mask'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -105,7 +106,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }),
     Ng2SearchPipeModule,
     NgSelectizeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     {

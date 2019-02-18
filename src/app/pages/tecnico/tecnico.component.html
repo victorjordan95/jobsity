@@ -41,11 +41,11 @@
           <tbody>
             <tr *ngFor="let tecnico of tecnicos | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
               <td>{{tecnico.nome}}</td>
-              <td>{{tecnico.celular ? tecnico.celular : 'Sem celular cadastrado'}}</td>
+              <td>{{tecnico.celular | mask: '(00) 0000-0000?0'}}</td>
               <td>{{tecnico.rua}}</td>
               <td>{{tecnico.numero}} {{tecnico.complemento}}</td>
               <td>{{tecnico.bairro}}</td>
-              <td>{{tecnico.cep}}</td>
+              <td>{{tecnico.cep | mask: '00000-000'}}</td>
               <td>{{tecnico.cidade}}</td>
               <td>{{tecnico.uf}}</td>
               <td>{{tecnico.comumCongregacao}}</td>
