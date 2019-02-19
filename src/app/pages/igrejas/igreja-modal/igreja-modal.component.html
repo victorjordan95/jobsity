@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label>Código CCB</label>
                         <input autocomplete="false"type="text" class="form-control" placeholder="Código da Igreja"
-                            [(ngModel)]="igreja.codCCB" name="codCCB" required #codigo="ngModel">
+                            [(ngModel)]="igreja.codCCB" name="codCCB"  #codigo="ngModel">
                         <small *ngIf="codigo?.invalid && (codigo?.dirty || codigo?.touched)"
                             class="danger form-text text-muted">
                             <span *ngIf="codigo?.errors.required">
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label>Rua</label>
                         <input autocomplete="false"type="text" class="form-control" placeholder="Nome da Rua" [(ngModel)]="igreja.rua"
-                            name="rua" required #rua='ngModel'>
+                            name="rua"  #rua='ngModel'>
                         <small *ngIf="rua?.invalid && (rua?.dirty || rua?.touched)" class="danger form-text text-muted">
                             <span *ngIf="rua?.errors.required">
                                 Campo "Rua" é obrigatório!
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label>Número</label>
                         <input autocomplete="false"type="text" class="form-control" placeholder="Número da igreja"
-                            [(ngModel)]="igreja.numero" name="numero" required #numero="ngModel">
+                            [(ngModel)]="igreja.numero" name="numero"  #numero="ngModel">
                         <small *ngIf="numero?.invalid && (numero?.dirty || numero?.touched)"
                             class="danger form-text text-muted">
                             <span *ngIf="numero?.errors.required">
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label>Bairro</label>
                         <input autocomplete="false"type="text" class="form-control" placeholder="Nome do Bairro" [(ngModel)]="igreja.bairro"
-                            name="bairro" required #bairro="ngModel">
+                            name="bairro"  #bairro="ngModel">
                         <small *ngIf="bairro?.invalid && (bairro?.dirty || bairro?.touched)"
                             class="danger form-text text-muted">
                             <span *ngIf="bairro?.errors.required">
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label>CEP</label>
                         <input autocomplete="false" type="text" class="form-control" placeholder="CEP" [(ngModel)]="igreja.cep" name="cep"
-                            required #cep="ngModel" mask="00000-000">
+                             #cep="ngModel" mask="00000-000">
                         <small *ngIf="cep?.invalid && (cep?.dirty || cep?.touched)" class="danger form-text text-muted">
                             <span *ngIf="cep?.errors.required">
                                 Campo "CEP" é obrigatório!
@@ -75,7 +75,7 @@
                     <div class="form-group">
                         <label>Cidade</label>
                         <input autocomplete="false"type="text" class="form-control" placeholder="Cidade" [(ngModel)]="igreja.cidade"
-                            name="cidade" required #cidade="ngModel">
+                            name="cidade"  #cidade="ngModel">
                         <small *ngIf="cidade?.invalid && (cidade?.dirty || cidade?.touched)"
                             class="danger form-text text-muted">
                             <span *ngIf="cidade?.errors.required">
@@ -86,7 +86,7 @@
 
                     <div class="form-group">
                         <label>UF</label>
-                        <select class="form-control" [(ngModel)]="igreja.uf" name="uf" required #uf="ngModel">
+                        <select class="form-control" [(ngModel)]="igreja.uf" name="uf" #uf="ngModel">
                             <option *ngFor="let estado of states" [ngValue]="estado.value">
                                 {{estado.estado}}
                             </option>
