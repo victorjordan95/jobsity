@@ -26,6 +26,7 @@
         <table class="table table-striped mb-0">
           <thead>
             <tr>
+              <th>Ação</th>
               <th>Nome</th>
               <th>Celular</th>
               <th>Rua</th>
@@ -35,11 +36,19 @@
               <th>Cidade</th>
               <th>UF</th>
               <th>Comum Congregação</th>
-              <th class="text-right">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let tecnico of tecnicos | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
+              <td>
+                <div dropdown>
+                  <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
+                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <span class="dropdown-item" (click)="showModal(tecnico)">Editar</span>
+                    <span class="dropdown-item" (click)="delete(tecnico)">Excluir</span>
+                  </div>
+                </div>
+              </td>
               <td>{{tecnico.nome}}</td>
               <td>{{tecnico.celular | mask: '(00) 0000-0000?0'}}</td>
               <td>{{tecnico.rua}}</td>
@@ -49,15 +58,6 @@
               <td>{{tecnico.cidade}}</td>
               <td>{{tecnico.uf}}</td>
               <td>{{tecnico.comumCongregacao}}</td>
-              <td class="text-right">
-                <div dropdown>
-                  <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
-                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
-                    <span class="dropdown-item" (click)="showModal(tecnico)">Editar</span>
-                    <span class="dropdown-item" (click)="delete(tecnico)">Excluir</span>
-                  </div>
-                </div>
-              </td>
             </tr>
           </tbody>
         </table>

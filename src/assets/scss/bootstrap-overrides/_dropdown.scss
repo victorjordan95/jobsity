@@ -11,6 +11,7 @@
   @include animate(fadeIn, 300ms);
   box-shadow: $dropdown-box-shadow;
   border: 1px solid #E0E0E0;
+  left: 0!important;
 }
 
 .dropdown-menu--block {

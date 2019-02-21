@@ -4,79 +4,84 @@
 <app-loader *ngIf="!isLoaded"></app-loader>
 
 <section class="content">
-  <header class="content__title">
-    <h1>Igrejas</h1>
-    <div class="actions">
-      <button class='btn btn-add' (click)="showModal()">
-        <i class="actions__item zmdi zmdi-plus"></i>
-        <span>Adicionar igreja</span>
-      </button>
-    </div>
-  </header>
-
-  <div class="card">
-    <div class="card-body">
-      <div class="data-table__header">
-        <div class="form-group data-table__filter">
-          <input autocomplete="false"placeholder="Filtrar por todas as colunas" [(ngModel)]="filter" class="form-control">
-          <i class="form-group__bar"></i>
+    <header class="content__title">
+        <h1>Igrejas</h1>
+        <div class="actions">
+            <button class='btn btn-add' (click)="showModal()">
+                <i class="actions__item zmdi zmdi-plus"></i>
+                <span>Adicionar igreja</span>
+            </button>
         </div>
-      </div>
-      <div class="table-responsive" *ngIf="isLoaded; else notLoaded">
-        <table class="table table-striped mb-0">
-          <thead>
-            <tr>
-              <th>Código CCB</th>
-              <th>Nome Igreja</th>
-              <th>Endereço</th>
-              <th>CEP</th>
-              <th>Cidade</th>
-              <th>UF</th>
-              <th>Encarregado Manutenção</th>
-              <th>Número Celular</th>
-              <th>Marca Órgão</th>
-              <th>Modelo Órgão</th>
-              <th>Número Órgão</th>
-              <th>Patrimônio Órgão</th>
-              <th>Acessório Órgão</th>
-              <th>Nº Série Acessório Órgão</th>
-              <th class="text-right">Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let igreja of igrejas | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
-              <td>{{igreja.codCCB}}</td>
-              <td>{{igreja.bairro}}</td>
-              <td>{{igreja.rua}}, {{igreja.numero}}</td>
-              <td>{{igreja.cep  | mask: '00000-000'}}</td>
-              <td>{{igreja.cidade}}</td>
-              <td>{{igreja.uf}}</td>
-              <td>{{igreja.tecnico}}</td>
-              <td>{{igreja.numCel | mask: '(00) 0000-0000?0'}}</td>
-              <td>{{igreja.marca}}</td>
-              <td>{{igreja.modelo}}</td>
-              <td>{{igreja.numeroOrgao}}</td>
-              <td>{{igreja.numeroPatrimonio}}</td>
-              <td>{{igreja.acessorio ? igreja.acessorio : '-'}}</td>
-              <td>{{igreja.numeroSerieAcessorio ? igreja.numeroSerieAcessorio : '-' }}</td>
-              <td class="text-right">
-                <div dropdown>
-                  <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
-                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
-                    <span class="dropdown-item" (click)="showModal(igreja)">Editar</span>
-                    <span class="dropdown-item" (click)="delete(igreja)">Excluir</span>
-                  </div>
+    </header>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="data-table__header">
+                <div class="form-group data-table__filter">
+                    <input autocomplete="false" placeholder="Filtrar por todas as colunas" [(ngModel)]="filter"
+                        class="form-control">
+                    <i class="form-group__bar"></i>
                 </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
-      </div>
-      <ng-template #notLoaded>
-        <p>Loading...</p>
-      </ng-template>
+            </div>
+            <div class="table-responsive" *ngIf="isLoaded; else notLoaded">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Ação</th>
+                            <th>Código CCB</th>
+                            <th>Nome Igreja</th>
+                            <th>Endereço</th>
+                            <!-- <th>CEP</th> -->
+                            <th>Cidade</th>
+                            <!-- <th>UF</th> -->
+                            <th>Encarregado Manutenção</th>
+                            <!-- <th>Número Celular</th> -->
+                            <th>Marca Órgão</th>
+                            <th>Modelo Órgão</th>
+                            <!-- <th>Número Órgão</th> -->
+                            <!-- <th>Patrimônio Órgão</th> -->
+                            <!-- <th>Acessório Órgão</th> -->
+                            <!-- <th>Nº Série Acessório Órgão</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let igreja of igrejas | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
+                            <td>
+                                <div dropdown>
+                                    <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
+                                    <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                                        <span class="dropdown-item" (click)="showModal(igreja)">Editar</span>
+                                        <span class="dropdown-item" (click)="delete(igreja)">Excluir</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{igreja.codCCB}}</td>
+                            <td>{{igreja.bairro}}</td>
+                            <td>{{igreja.rua}}, {{igreja.numero}}</td>
+                            <!-- <td>{{igreja.cep  | mask: '00000-000'}}</td> -->
+                            <td>{{igreja.cidade}}</td>
+                            <!-- <td>{{igreja.uf}}</td> -->
+                            <td>{{igreja.tecnico ? igreja.tecnico : 'Pendente' }}</td>
+                            <!-- <td>{{igreja.numCel | mask: '(00) 0000-0000?0'}}</td> -->
+                            <td>{{igreja.marca ? igreja.marca : 'Pendente'}}</td>
+                            <td>{{igreja.modelo ? igreja.modelo : 'Pendente'}}</td>
+                            <!-- <td>{{igreja.numeroOrgao}}</td> -->
+                            <!-- <td>{{igreja.numeroPatrimonio}}</td> -->
+                            <!-- <td>{{igreja.acessorio ? igreja.acessorio : '-'}}</td> -->
+                            <!-- <td>{{igreja.numeroSerieAcessorio ? igreja.numeroSerieAcessorio : '-' }}</td> -->
+
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo">
+                </pagination-controls>
+            </div>
+            <ng-template #notLoaded>
+                <p>Loading...</p>
+            </ng-template>
+        </div>
     </div>
-  </div>
 
 </section>

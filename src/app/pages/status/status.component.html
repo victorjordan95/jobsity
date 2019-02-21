@@ -26,14 +26,13 @@
         <table class="table table-striped mb-0">
           <thead>
             <tr>
+              <th>Ação</th>
               <th>Nome</th>
-              <th class="text-right">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let status of allStatus | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
-              <td>{{status.nome}}</td>
-              <td class="text-right">
+              <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
                   <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
@@ -42,6 +41,7 @@
                   </div>
                 </div>
               </td>
+              <td>{{status.nome}}</td>
             </tr>
           </tbody>
         </table>

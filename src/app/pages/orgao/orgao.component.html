@@ -18,7 +18,7 @@
     <div class="card-body">
       <div class="data-table__header">
         <div class="form-group data-table__filter">
-          <input autocomplete="false"placeholder="Filtrar por todas as colunas" class="form-control">
+          <input autocomplete="false" placeholder="Filtrar por todas as colunas" class="form-control">
           <i class="form-group__bar"></i>
         </div>
       </div>
@@ -26,24 +26,18 @@
         <table class="table table-striped mb-0">
           <thead>
             <tr>
+              <th>Ação</th>
               <th>Marca</th>
               <th>Modelo</th>
               <th>Número</th>
               <th>Patrimônio</th>
               <th>Acessório</th>
               <th>Nº Série Acessório</th>
-              <th class="text-right">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let orgao of orgaos | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
-              <td>{{orgao.marca}}</td>
-              <td>{{orgao.modelo}}</td>
-              <td>{{orgao.numero}}</td>
-              <td>{{orgao.numeroPatrimonio}}</td>
-              <td>{{orgao.acessorio}}</td>
-              <td>{{orgao.numeroSerieAcessorio}}</td>
-              <td class="text-right">
+              <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
                   <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
@@ -52,6 +46,12 @@
                   </div>
                 </div>
               </td>
+              <td>{{orgao.marca}}</td>
+              <td>{{orgao.modelo}}</td>
+              <td>{{orgao.numero}}</td>
+              <td>{{orgao.numeroPatrimonio}}</td>
+              <td>{{orgao.acessorio}}</td>
+              <td>{{orgao.numeroSerieAcessorio}}</td>
             </tr>
           </tbody>
         </table>

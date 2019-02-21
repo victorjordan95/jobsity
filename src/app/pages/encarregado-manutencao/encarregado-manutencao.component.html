@@ -27,14 +27,14 @@
             <tr>
               <th>Nome</th>
               <th>Celular</th>
-              <th class="text-right">Ação</th>
+              <th>Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let encarregado of encarregados">
               <td>{{encarregado.nome}}</td>
               <td>{{encarregado.celular}}</td>
-              <td class="text-right">
+              <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
                   <div *dropdownMenu class="dropdown-menu dropdown-menu-right">

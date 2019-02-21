@@ -19,7 +19,7 @@
     <div class="card-body">
       <div class="data-table__header">
         <div class="form-group data-table__filter">
-          <input autocomplete="false"placeholder="Filtrar por todas colunas" [(ngModel)]="filter" class="form-control">
+          <input autocomplete="false" placeholder="Filtrar por todas colunas" [(ngModel)]="filter" class="form-control">
           <i class="form-group__bar"></i>
         </div>
       </div>
@@ -27,6 +27,7 @@
         <table class="table table-striped mb-0">
           <thead>
             <tr>
+              <th>Ação</th>
               <th>Número OS</th>
               <th>Igreja</th>
               <th>Motivo</th>
@@ -37,11 +38,20 @@
               <th>Data Cadastro</th>
               <th>Data Atendimento</th>
               <th>Observações</th>
-              <th class="text-right">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let order of orders | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
+              <td>
+                <div dropdown>
+                  <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
+                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <span class="dropdown-item" (click)="showModal(order)">Editar</span>
+                    <span class="dropdown-item" (click)="viewModalOS(order)">Visualizar</span>
+                    <span class="dropdown-item" (click)="delete(order)" *ngIf="shared.getUserRole() === 'ADMIN'">Excluir</span>
+                  </div>
+                </div>
+              </td>
               <td>{{order.numeroOS}}</td>
               <td>{{order.ccbinfo.bairro}}</td>
               <td class="td-overflow">{{order.motivo}}</td>
@@ -71,16 +81,6 @@
                 <span *ngIf="!order.dataAtendimento">Pendente</span>
               </td>
               <td class="td-overflow">{{order.observacoes}}</td>
-              <td class="text-right">
-                <div dropdown>
-                  <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
-                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
-                    <span class="dropdown-item" (click)="showModal(order)">Editar</span>
-                    <span class="dropdown-item" (click)="viewModalOS(order)">Visualizar</span>
-                    <span class="dropdown-item" (click)="delete(order)" *ngIf="shared.getUserRole() === 'ADMIN'">Excluir</span>
-                  </div>
-                </div>
-              </td>
             </tr>
           </tbody>
         </table>

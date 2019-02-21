@@ -5,13 +5,13 @@ export class Igreja {
     codCCB: any = '';
     nomeIgreja: String = '';
     rua: String  = '';
-    numero: number = null;
+    numero: any = '';
     bairro: String = '';
     cep: any = '';
     cidade: String = '';
     uf: any  = '';
     tecnico: String = '';
-    numCel:  number = null;
+    numCel:  any = '';
     marca: String = '';
     modelo: String = '';
     numeroOrgao: any = '';

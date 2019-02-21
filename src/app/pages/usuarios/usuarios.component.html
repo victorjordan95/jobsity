@@ -25,18 +25,15 @@
         <table class="table table-striped mb-0">
           <thead>
             <tr>
+              <th>Ação</th>
               <th>Nome</th>
               <th>E-mail</th>
               <th>Tipo de Usuário</th>
-              <th class="text-right">Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let usuario of usuarios | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
-              <td>{{usuario.nome}}</td>
-              <td>{{usuario.email}}</td>
-              <td>{{usuario.role}}</td>
-              <td class="text-right">
+              <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
                   <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
@@ -45,6 +42,9 @@
                   </div>
                 </div>
               </td>
+              <td>{{usuario.nome}}</td>
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.role}}</td>
             </tr>
           </tbody>
         </table>
