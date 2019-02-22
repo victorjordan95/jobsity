@@ -77,6 +77,7 @@ export class ModalTecnicoComponent implements OnInit {
         this.angularFire.list(`tecnicos/`).set(`${this.tecnico.id}`, form.value).then((t: any) => {
             this.createModal.hide();
             this.tecnico = new Tecnico;
+            this.toastr.success('Técnico salvo com sucesso!', 'Sucesso!');
         });
     }
 
