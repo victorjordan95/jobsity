@@ -55,9 +55,7 @@ export class OrdemServicoComponent implements OnInit {
                         }
                     });
                 }
-                this.orders.forEach(element => {
-                    element['ccbName'] = element.ccbinfo['bairro'];
-                });
+                this.orders.forEach(element => element['ccbName'] = element.ccbinfo['bairro'] );
                 this.isLoaded = true;
             }
         );

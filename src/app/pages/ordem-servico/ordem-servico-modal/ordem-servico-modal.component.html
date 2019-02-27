@@ -86,8 +86,7 @@
 
                     <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control" [(ngModel)]="ordemServico.status" name="status" 
-                            [disabled]="!(roleUser==='ADMIN')" #status="ngModel">
+                        <select class="form-control" [(ngModel)]="ordemServico.status" name="status" #status="ngModel">
                             <option *ngFor="let status of allStatus" [ngValue]="status.nome">
                                 {{status.nome}}
                             </option>
