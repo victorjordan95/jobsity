@@ -25,6 +25,21 @@
           <span class="church-address">
             {{OS.ccbinfo.rua}}, {{OS.ccbinfo.numero}} - {{OS.ccbinfo.bairro}}
           </span>
+          <p class="b mt-16">Encarregado Local de Manutenção</p>
+          <span class="church-address">
+            {{OS.ccbinfo.tecnico ? OS.ccbinfo.tecnico : 'Encarregado não cadastrado'}}, 
+            {{OS.ccbinfo.numCel ? OS.ccbinfo.numCel : 'Celular não cadastrado'}}
+          </span>
+        </div>
+
+        <div class="order-motive">
+          <span class="b">Órgão</span>
+          <span>
+            Marca: {{OS.ccbinfo.marca ? OS.ccbinfo.marca : 'Não cadastrado' }}
+          </span>
+          <span>
+            Modelo: {{OS.ccbinfo.modelo ? OS.ccbinfo.modelo : 'Não cadastrado'}}
+          </span>
         </div>
 
         <div class="order-motive">
@@ -45,12 +60,12 @@
           <div class="date">
             <span class="b">Técnico 1</span>
             <span>{{OS.tecnico1Info.nome}}</span>
-            <span>{{OS.tecnico1Info.celular}}</span>
+            <span>{{OS.tecnico1Info.celular | mask: '(00) 0000-0000?0'}}</span>
           </div>
           <div class="date">
             <span class="b">Técnico 2</span>
             <span>{{OS.tecnico2Info.nome}}</span>
-            <span>{{OS.tecnico2Info.celular}}</span>
+            <span>{{OS.tecnico2Info.celular | mask: '(00) 0000-0000?0'}}</span>
           </div>
         </div>
 

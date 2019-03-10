@@ -1,10 +1,10 @@
-<app-header></app-header>
+<app-header class="no-print"></app-header>
 <app-ordem-servico-modal></app-ordem-servico-modal>
 <app-delete-modal></app-delete-modal>
 <app-ordem-servico-modal-view></app-ordem-servico-modal-view>
 <app-loader *ngIf="!isLoaded"></app-loader>
 
-<section class="content">
+<section class="content no-print">
   <header class="content__title">
     <h1>Ordem de Serviço</h1>
     <div class="actions" *ngIf="shared.getUserRole() === 'ADMIN'">

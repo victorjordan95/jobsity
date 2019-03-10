@@ -15,6 +15,7 @@ export class OrdemServicoModalViewComponent implements OnInit {
   }
 
   showModal(e?) {
+    console.log(e);
     this.OS = e;
     this.createModal.show();
   }

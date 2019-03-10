@@ -50,6 +50,7 @@ export class OrdemServicoComponent implements OnInit {
                     this.orders = data;
                 } else {
                     data.forEach(ordem => {
+                        if (!ordem.tecnico1Info || !ordem.tecnico2Info) return;
                         if ((ordem.tecnico1Info || ordem.tecnico2Info) && ( ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2])) {
                             this.orders.push(ordem);
                         }
