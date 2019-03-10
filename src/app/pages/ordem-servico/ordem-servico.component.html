@@ -57,7 +57,7 @@
               <td class="td-overflow">{{order.motivo}}</td>
               <td class="td-overflow">{{order.solucao}}</td>
               <td>
-                <span *ngIf="order.tecnico2Info; else elseTec1">
+                <span *ngIf="order.tecnico1Info; else elseTec1">
                   {{order.tecnico1Info.nome.split(' ')[0]}}
                   {{order.tecnico1Info.nome.split(' ')[order.tecnico1Info.nome.split(' ').length - 1][0]}}.
                 </span>
