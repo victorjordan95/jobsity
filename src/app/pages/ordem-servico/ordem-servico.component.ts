@@ -38,7 +38,7 @@ export class OrdemServicoComponent implements OnInit {
     }
 
     delete(e) {
-        this.deleteModal.showModal(e.id, `${e.numeroOS} da igreja ${e.ccb.bairro}`, 'Ordem de Serviço');
+        this.deleteModal.showModal(e.id, `${e.numeroOS} da igreja ${e.ccb.bairro}`, 'ordemServico');
     }
 
     getOrdemServico() {
