@@ -18,4 +18,6 @@ export class Igreja {
     numeroPatrimonio: any = '';
     acessorio?: any = '';
     numeroSerieAcessorio?: any = '';
+    lat?: any;
+    lng?: any;
 }

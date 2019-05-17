@@ -33,12 +33,13 @@ export class HeaderComponent implements OnInit {
     public userEmail;
 
     itemsMenu = [
-        { link: 'agenda', icon: 'zmdi-calendar-note', label: 'Agenda', role: 'USER' },
-        { link: 'igreja', icon: 'zmdi-balance', label: 'Igreja', role: 'ADMIN' },
-        { link: 'tecnico', icon: 'zmdi-face', label: 'Técnico', role: 'ADMIN' },
-        { link: 'usuarios', icon: 'zmdi-accounts-alt', label: 'Usuários', role: 'ADMIN' },
-        { link: 'status', icon: 'zmdi-alert-circle-o', label: 'Status', role: 'ADMIN' },
-        { link: 'ordem-servico', icon: 'zmdi-file-text', label: 'Ordem de Serviço', role: 'USER' },
+        { link: 'agenda', icon: 'zmdi-calendar-note', label: 'Agenda', role: ['ADMIN', 'USER'] },
+        { link: 'igreja', icon: 'zmdi-balance', label: 'Igreja', role: ['ADMIN'] },
+        { link: 'tecnico', icon: 'zmdi-face', label: 'Técnico', role: ['ADMIN'] },
+        { link: 'usuarios', icon: 'zmdi-accounts-alt', label: 'Usuários', role: ['ADMIN'] },
+        { link: 'status', icon: 'zmdi-alert-circle-o', label: 'Status', role: ['ADMIN'] },
+        { link: 'ordem-servico', icon: 'zmdi-file-text', label: 'Ordem de Serviço', role: ['ADMIN', 'USER'] },
+        { link: 'mapa', icon: 'zmdi-map', label: 'Mapa com as Igrejas', role: ['ADMIN', 'USER', 'MINISTERIO'] },
     ];
 
     // Sub menu visibilities

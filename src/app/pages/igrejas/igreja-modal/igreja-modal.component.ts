@@ -78,6 +78,10 @@ export class IgrejaModalComponent implements OnInit {
         this.angularFire.list(`igrejas/`).set(`${this.igreja.id}`, form.value).then((t: any) => {
             this.createModal.hide();
             this.igreja = new Igreja;
+            this.toastr.success('Igreja salva com sucesso!', 'Sucesso!');
+        }).catch((reason: any) => {
+            this.toastr.error(`Ops! Algo de inesperado ocorreu!`, 'Erro!');
+            console.error(reason);
         });
     }
 

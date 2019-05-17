@@ -1,5 +1,6 @@
-# Personal Agenda
+# SGO - Sistema de Gerenciamento de Orgãos
 
+Este projeto foi feito com o intuíto de auxiliar os irmãos que realizam a manutenção de órgãos.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
 
 ## Development server

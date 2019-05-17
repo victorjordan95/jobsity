@@ -134,7 +134,7 @@
     <ul class="navigation">
 
       <div *ngFor="let item of itemsMenu">
-        <li *ngIf="sharedService.getUserRole() === item.role || sharedService.getUserRole() === 'ADMIN'"
+        <li *ngIf="item.role.includes(sharedService.getUserRole())"
           routerLinkActive="navigation__active" (click)="closeMenu()">
           <a [routerLink]="['/', item.link]">
             <i [ngClass]="['zmdi', item.icon]"></i>

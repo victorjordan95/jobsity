@@ -12,19 +12,21 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { StatusComponent } from './pages/status/status.component';
 import { UpdatePasswordComponent } from './pages/profile/update-password/update-password.component';
 import { OrdemServicoComponent } from './pages/ordem-servico/ordem-servico.component';
+import { MapaComponent } from './pages/mapa/mapa.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'agenda', component: AgendamentoComponent, canActivate: [AuthGuardService] },
-  { path: 'igreja', component: IgrejasComponent, canActivate: [AuthGuardService] },
-  { path: 'ordem-servico', component: OrdemServicoComponent, canActivate: [AuthGuardService] },
+  { path: 'agenda', component: AgendamentoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']} },
+  { path: 'igreja', component: IgrejasComponent, canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']} },
+  { path: 'ordem-servico', component: OrdemServicoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']} },
   { path: 'alterar-senha', component: UpdatePasswordComponent, canActivate: [AuthGuardService] },
-  { path: 'encarregado-manutencao', component: EncarregadoManutencaoComponent, canActivate: [AuthGuardService]},
-  { path: 'tecnico', component: TecnicoComponent, canActivate: [RoleGuardService], data: { expectedRole: 'ADMIN' }},
-  { path: 'orgao', component: OrgaoComponent, canActivate: [RoleGuardService], data: { expectedRole: 'ADMIN' } },
-  { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuardService], data: { expectedRole: 'ADMIN' } },
-  { path: 'status', component: StatusComponent, canActivate: [RoleGuardService], data: { expectedRole: 'ADMIN' } },
+  { path: 'encarregado-manutencao', component: EncarregadoManutencaoComponent,canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']}},
+  { path: 'tecnico', component: TecnicoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] }},
+  { path: 'orgao', component: OrgaoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
+  { path: 'status', component: StatusComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
+  { path: 'mapa', component: MapaComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN', 'MINISTERIO'] } },
 ];
 
 @NgModule({
