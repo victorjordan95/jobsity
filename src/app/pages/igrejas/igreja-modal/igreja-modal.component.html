@@ -98,15 +98,26 @@
                         </small>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 0">
                       <label>Latitude</label>
                       <input autocomplete="false" type="text" class="form-control" placeholder="Latitude" [(ngModel)]="igreja.lat" name="lat" #lat="ngModel">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 0">
                       <label>Longitude</label>
                       <input autocomplete="false" type="text" class="form-control" placeholder="Longitude" [(ngModel)]="igreja.lng" name="lng" #lng="ngModel">
                     </div>
+
+                    <div class="btn-locale">
+                        <span (click)="checkLocale()" class="btn btn-success">
+                        <i class="zmdi zmdi-pin zmdi-hc-fw"></i>    
+                          Usar minha localização atual
+                        </span>
+                    </div>
+                    <span *ngIf="geoLocationNotSupp">
+                        Geolocalização não é suportada pelo seu navegador!
+                    </span>
+                    
 
                     <div class="form-group">
                         <label>Encarregado de Manutenção</label>

@@ -18,6 +18,10 @@ export class IgrejaModalComponent implements OnInit {
     @ViewChild('createModal') createModal: ModalDirective;
     public igreja = new Igreja;
     public tecnicos;
+    public geoLocationNotSupp = false;
+
+    public lat;
+    public lng;
 
     public states = [
         { value: '' , estado: 'Selecione um estado'},
@@ -56,10 +60,25 @@ export class IgrejaModalComponent implements OnInit {
         // this.getEncarregados();
     }
 
+    checkLocale() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setLocale.bind(this));
+            this.geoLocationNotSupp = false;
+        } else {
+            this.geoLocationNotSupp = true;
+        }
+    }
+
+    setLocale(position) {
+        this.igreja.lat = position.coords.latitude;
+        this.igreja.lng = position.coords.longitude;
+    }
+
     showModal(e?): void {
         if (e) {
             this.igreja = e;
         } else {
+            this.igreja = new Igreja;
             const x = new Date();
             this.igreja.id = `${x.getDate()}${x.getMonth() + 1}${x.getUTCFullYear()}` +
                 `${x.getHours()}${x.getMinutes()}${x.getSeconds()}${x.getMilliseconds()}`;
