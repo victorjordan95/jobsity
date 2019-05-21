@@ -76,7 +76,7 @@ export class MapaComponent implements OnInit {
                 <span>Telefone Contato: ${igreja.numCel}</span>
                 ${igreja.hasOS ? `<br> OS aberta: <b>${igreja.hasOS[0]}</b>` : ``}
                 <br><br>
-                <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" style="margin-top: 16px">
+                <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" target="_blank" style="margin-top: 16px">
                     Abrir no GPS
                 </a>
             `;
