@@ -21,7 +21,9 @@ const routes: Routes = [
   { path: 'igreja', component: IgrejasComponent, canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']} },
   { path: 'ordem-servico', component: OrdemServicoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']} },
   { path: 'alterar-senha', component: UpdatePasswordComponent, canActivate: [AuthGuardService] },
-  { path: 'encarregado-manutencao', component: EncarregadoManutencaoComponent,canActivate: [RoleGuardService], data: { expectedRole: ['USER', 'ADMIN']}},
+  { path: 'encarregado-manutencao', component: EncarregadoManutencaoComponent, canActivate: [RoleGuardService],
+      data: { expectedRole: ['USER', 'ADMIN'] }
+  },
   { path: 'tecnico', component: TecnicoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] }},
   { path: 'orgao', component: OrgaoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
