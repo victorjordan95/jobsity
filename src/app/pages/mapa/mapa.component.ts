@@ -13,25 +13,40 @@ declare let L;
 })
 export class MapaComponent implements OnInit {
 
-    public igrejas;
+    public layerGroup: any;
+    public igrejas: [Igreja];
     public isLoaded = true;
+    public map: any;
     private defaultIcon: Icon = icon({
         iconUrl: './../../../assets/leaflet/images/marker-icon.png',
         shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
     });
+    private redIcon: Icon = icon({
+        iconUrl: './../../../assets/leaflet/images/marker-icon-red.png',
+        shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
+    });
+    selectedChurch: string[];
+    userLat: number;
+    userLng: number;
 
-    map;
+    constructor(private angularFire: AngularFireDatabase) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setLocale.bind(this));
+        } else {
+            console.log('Geolocation not supported');
+        }
+    }
 
-    constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    setLocale(position: any): void {
+        this.map.setView([position.coords.latitude, position.coords.longitude], 15);
     }
 
     ngOnInit() {
         this.getIgrejas();
 
-        Marker.prototype.options.icon = this.defaultIcon;
         this.map = L.map('map', {
             scrollWheelZoom: false,
-        }).setView([-23.175477, -45.878163], 15);
+        }).setView([this.userLng || -23.175477, this.userLat || -45.878163], 15);
 
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -39,10 +54,10 @@ export class MapaComponent implements OnInit {
         }).addTo(this.map);
     }
 
-    getIgrejas() {
+    getIgrejas(): void {
         this.isLoaded = false;
         this.angularFire.list(`igrejas`).valueChanges().subscribe(
-            data => {
+            (data: [Igreja]) => {
                 this.igrejas = data;
                 this.isLoaded = true;
                 this.addPointsInMap(this.igrejas);
@@ -51,19 +66,38 @@ export class MapaComponent implements OnInit {
     }
 
     addPointsInMap(igrejas: [Igreja]) {
-        igrejas.forEach(igreja => {
+        this.layerGroup = L.layerGroup().addTo(this.map);
+        this.map.setZoom(14);
+
+        igrejas.forEach((igreja: Igreja) => {
             const popupContent = `
                 <h5>${igreja.bairro}</h5>
                 <span>Encarregado local de manutenção: ${igreja.tecnico}</span> <br>
-                <span>Telefone Contato: ${igreja.numCel}</span> <br>
-                <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=">Abrir no GPS</a>
+                <span>Telefone Contato: ${igreja.numCel}</span>
+                ${igreja.hasOS ? `<br> OS aberta: <b>${igreja.hasOS[0]}</b>` : ``}
+                <br><br>
+                <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" style="margin-top: 16px">
+                    Abrir no GPS
+                </a>
             `;
 
+            Marker.prototype.options.icon = igreja.hasOS !== undefined && igreja.hasOS.length >= 1 ? this.redIcon : this.defaultIcon;
             L.marker([igreja.lat || '', igreja.lng || ''])
             .bindPopup(popupContent)
             .openPopup()
-            .addTo(this.map);
+            .addTo(this.layerGroup);
         });
+    }
+
+    onChange(church: Igreja) {
+        this.map.setView([church.lat, church.lng], 13);
+        this.layerGroup.clearLayers();
+        this.addPointsInMap([church]);
+        this.map.setView([church.lat, church.lng], 16);
+    }
+
+    onClear() {
+        this.addPointsInMap(this.igrejas);
     }
 
 }

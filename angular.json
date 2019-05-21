@@ -28,14 +28,12 @@
             ],
             "styles": [
               "./node_modules/material-design-iconic-font/dist/css/material-design-iconic-font.min.css",
-              "./node_modules/selectize/dist/css/selectize.css",
               "./src/assets/leaflet/leaflet.css",
               "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./src/assets/leaflet/leaflet.js",
-              "./node_modules/ng-selectize/selectize/selectize.standalone.js"
             ]
           },
           "configurations": {

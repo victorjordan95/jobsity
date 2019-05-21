@@ -17,10 +17,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {NgSelectizeModule} from 'ng-selectize';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {NgxMaskModule} from 'ngx-mask'
+import {NgxMaskModule} from 'ngx-mask';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -107,9 +107,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       closeButton: true
     }),
     Ng2SearchPipeModule,
-    NgSelectizeModule,
     NgxPaginationModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    NgSelectModule
   ],
   providers: [
     {

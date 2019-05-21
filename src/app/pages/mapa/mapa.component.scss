@@ -2,4 +2,12 @@
   height: 500px;
   width: 100%;
   position: sticky!important;
+  z-index: 2;
+}
+
+.card-body-header {
+  margin-bottom: 24px!important;
+  @media screen and (min-width: 1024px) {
+    width: 50%!important;
+  }
 }

@@ -71,12 +71,17 @@ export class OrdemServicoModalComponent implements OnInit {
 
         this.angularFire.list(`ordemServico/`).set(`${this.ordemServico.id}`, this.ordemServico)
             .then((t: any) => {
+                this.angularFire.list(`igrejas/`).set(`${form.value.ccb}`, {...ccbinfo, 'hasOS': [this.ordemServico.numeroOS]})
+                    .then()
+                    .catch((error: any) => {
+                        this.toastr.error('Ocorreu um erro ao adicionar a ordem à igreja!', 'Erro!');
+                    });
                 this.createModal.hide();
                 this.ordemServico = new OrdemServico;
                 this.toastr.success('Status salvo com sucesso!', 'Sucesso!');
             })
             .catch((error) => {
-                this.toastr.error('Ocorreu um erro ao adicionar o ordemServico!', 'Erro!');
+                this.toastr.error('Ocorreu um erro ao adicionar a ordem de serviço!', 'Erro!');
                 console.log(`Error: ${error}`);
             });
     }

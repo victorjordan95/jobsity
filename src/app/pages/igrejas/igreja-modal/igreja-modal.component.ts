@@ -94,6 +94,7 @@ export class IgrejaModalComponent implements OnInit {
 
     onSubmit(form: NgForm): void {
         form.value.numCel = form.value.numCel ? form.value.numCel : '';
+        form.value.hasOs = this.igreja.hasOS ? this.igreja.hasOS : [];
         this.angularFire.list(`igrejas/`).set(`${this.igreja.id}`, form.value).then((t: any) => {
             this.createModal.hide();
             this.igreja = new Igreja;

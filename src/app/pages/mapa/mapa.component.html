@@ -8,10 +8,21 @@
 
     <div class="card">
         <div class="card-body">
+            <div class="card-body-header">
+                <h5>Procurar por uma igreja:</h5>
+                <ng-select 
+                    [items]="igrejas" 
+                    bindLabel="bairro" 
+                    autofocus 
+                    bindValue="id"
+                    [(ngModel)]="selectedChurch"
+                    (change)="onChange($event)"
+                    (clear)="onClear()"
+                    placeholder="Procure uma igreja..."
+                >
+                </ng-select>
+            </div>
             <div id="map"></div>
-            <ng-template #notLoaded>
-                <p>Loading...</p>
-            </ng-template>
         </div>
     </div>
 
