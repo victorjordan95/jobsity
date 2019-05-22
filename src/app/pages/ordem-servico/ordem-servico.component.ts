@@ -22,7 +22,7 @@ export class OrdemServicoComponent implements OnInit {
     public filter = '';
     public page = 1;
 
-    constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth, public shared: SharedService) {
+    constructor(private angularFire: AngularFireDatabase, public shared: SharedService) {
     }
 
     ngOnInit() {
@@ -38,7 +38,7 @@ export class OrdemServicoComponent implements OnInit {
     }
 
     delete(e) {
-        this.deleteModal.showModal(e.id, `${e.numeroOS} da igreja ${e.ccb.bairro}`, 'ordemServico');
+        this.deleteModal.showModal(e.id, `Ordem de Serviço "${e.numeroOS}" da igreja ${e.ccbinfo.bairro}`, 'ordemServico');
     }
 
     getOrdemServico() {
@@ -50,9 +50,11 @@ export class OrdemServicoComponent implements OnInit {
                     this.orders = data;
                 } else {
                     data.forEach(ordem => {
-                        if (!ordem.tecnico1Info || !ordem.tecnico2Info) return;
-                        if ((ordem.tecnico1Info || ordem.tecnico2Info) && ( ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2])) {
-                            this.orders.push(ordem);
+                        if (!ordem.tecnico1Info && !ordem.tecnico2Info) {
+                            return;
+                        }
+                        if ( ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2]) {
+                            return [...this.orders, ordem];
                         }
                     });
                 }

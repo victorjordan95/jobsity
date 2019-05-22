@@ -25,6 +25,10 @@ export class MapaComponent implements OnInit {
         iconUrl: './../../../assets/leaflet/images/marker-icon-red.png',
         shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
     });
+    private greenIcon: Icon = icon({
+        iconUrl: './../../../assets/leaflet/images/marker-icon-green.png',
+        shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
+    });
     selectedChurch: string[];
     userLat: number;
     userLng: number;
@@ -74,14 +78,22 @@ export class MapaComponent implements OnInit {
                 <h5>${igreja.bairro}</h5>
                 <span>Encarregado local de manutenção: ${igreja.tecnico}</span> <br>
                 <span>Telefone Contato: ${igreja.numCel}</span>
-                ${igreja.hasOS ? `<br> OS aberta: <b>${igreja.hasOS[0]}</b>` : ``}
+                ${igreja.ordemServico ? `<br> OS aberta: <b>${igreja.ordemServico.osNumber}</b>` : ``}
                 <br><br>
                 <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" target="_blank" style="margin-top: 16px">
                     Abrir no GPS
                 </a>
             `;
 
-            Marker.prototype.options.icon = igreja.hasOS !== undefined && igreja.hasOS.length >= 1 ? this.redIcon : this.defaultIcon;
+            if (igreja.ordemServico !== undefined && igreja.ordemServico.status === 'Agendar') {
+                Marker.prototype.options.icon = this.redIcon;
+            } else if (igreja.ordemServico !== undefined && igreja.ordemServico.status === 'Agendado') {
+                Marker.prototype.options.icon = this.greenIcon;
+            } else {
+                Marker.prototype.options.icon = this.defaultIcon;
+            }
+
+            //  igreja.ordemServico !== undefined && igreja.ordemServico.length >= 1 ? this.redIcon : this.defaultIcon;
             L.marker([igreja.lat || '', igreja.lng || ''])
             .bindPopup(popupContent)
             .openPopup()

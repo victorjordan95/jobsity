@@ -20,5 +20,5 @@ export class Igreja {
     numeroSerieAcessorio?: any = '';
     lat?: any = '';
     lng?: any = '';
-    hasOS: [string] = [''];
+    ordemServico: {osNumber: string, status: string};
 }

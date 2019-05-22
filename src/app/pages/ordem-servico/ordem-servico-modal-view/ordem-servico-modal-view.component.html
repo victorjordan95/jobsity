@@ -25,9 +25,12 @@
           <span class="church-address">
             {{OS.ccbinfo.rua}}, {{OS.ccbinfo.numero}} - {{OS.ccbinfo.bairro}}
           </span>
+          <a *ngIf="OS.ccbinfo.lat && OS.ccbinfo.lng" href="{{gpsLink}}" target="_blank">
+            Visualizar no Mapa
+          </a>
           <p class="b mt-16">Encarregado Local de Manutenção</p>
           <span class="church-address">
-            {{OS.ccbinfo.tecnico ? OS.ccbinfo.tecnico : 'Encarregado não cadastrado'}}, 
+            {{OS.ccbinfo.tecnico ? OS.ccbinfo.tecnico : 'Encarregado não cadastrado'}},
             {{OS.ccbinfo.numCel ? OS.ccbinfo.numCel : 'Celular não cadastrado'}}
           </span>
         </div>
@@ -78,7 +81,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn no-print" (click)="createModal.hide()">Cancelar</button>
-          <button type="button" class="btn btn-success no-print" (click)="print()" >Imprimir</button>
+          <button type="button" class="btn btn-success no-print" (click)="print()">Imprimir</button>
         </div>
       </div>
 
