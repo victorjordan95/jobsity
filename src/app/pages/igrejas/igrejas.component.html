@@ -67,7 +67,7 @@
                     </thead>
                     <tbody>
                         <tr
-                            *ngFor="let igreja of igrejas | filter:filter | paginate: { itemsPerPage: 10, currentPage: page } | orderBy: key : reverse;">
+                            *ngFor="let igreja of igrejas | orderBy: key : reverse : true | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
                             <td>
                                 <div dropdown>
                                     <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>

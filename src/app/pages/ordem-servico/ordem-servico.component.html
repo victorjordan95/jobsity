@@ -52,18 +52,18 @@
               </th>
               <th (click)="sort('order.dataCadastro')" class="pointer">
                 Data Cadastro
-                <i class="zmdi" *ngIf="key =='cadastro'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                <i class="zmdi" *ngIf="key =='dataCadastro'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
               </th>
               <th (click)="sort('order.dataAtendimento')" class="pointer">
                 Data Atendimento
-                <i class="zmdi" *ngIf="key =='atendimento'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                <i class="zmdi" *ngIf="key =='dataAtendimento'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
               </th>
               <th>Observações</th>
             </tr>
           </thead>
           <tbody>
             <tr
-              *ngFor="let order of orders | filter:filter | paginate: { itemsPerPage: 10, currentPage: page } | orderBy: key : reverse;">
+              *ngFor="let order of orders | orderBy: key : reverse : true | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
               <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
