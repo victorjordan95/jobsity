@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'orgao', component: OrgaoComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
   { path: 'status', component: StatusComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
-  { path: 'mapa', component: MapaComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN', 'MINISTERIO'] } },
+  { path: 'mapa', component: MapaComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN', 'MINISTERIO', 'USER'] } },
 ];
 
 @NgModule({

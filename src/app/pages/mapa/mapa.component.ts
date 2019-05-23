@@ -29,6 +29,14 @@ export class MapaComponent implements OnInit {
         iconUrl: './../../../assets/leaflet/images/marker-icon-green.png',
         shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
     });
+    private greyIcon: Icon = icon({
+        iconUrl: './../../../assets/leaflet/images/marker-icon-grey.png',
+        shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
+    });
+    private yellowIcon: Icon = icon({
+        iconUrl: './../../../assets/leaflet/images/marker-icon-yellow.png',
+        shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
+    });
     selectedChurch: string[];
     userLat: number;
     userLng: number;
@@ -78,27 +86,44 @@ export class MapaComponent implements OnInit {
                 <h5>${igreja.bairro}</h5>
                 <span>Encarregado local de manutenção: ${igreja.tecnico}</span> <br>
                 <span>Telefone Contato: ${igreja.numCel}</span>
-                ${igreja.ordemServico ? `<br> OS aberta: <b>${igreja.ordemServico.osNumber}</b>` : ``}
+                ${igreja.ordemServico && this.checkOS(igreja.ordemServico) ?
+                    `<br> Status OS: <b> ${igreja.ordemServico.status}</b>
+                    <br> OS aberta: <b>${igreja.ordemServico.osNumber}</b>`
+                    :
+                    ``
+                }
                 <br><br>
                 <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" target="_blank" style="margin-top: 16px">
                     Abrir no GPS
                 </a>
             `;
 
-            if (igreja.ordemServico !== undefined && igreja.ordemServico.status === 'Agendar') {
-                Marker.prototype.options.icon = this.redIcon;
-            } else if (igreja.ordemServico !== undefined && igreja.ordemServico.status === 'Agendado') {
-                Marker.prototype.options.icon = this.greenIcon;
-            } else {
-                Marker.prototype.options.icon = this.defaultIcon;
+            if (igreja.ordemServico !== undefined) {
+                switch (igreja.ordemServico.status) {
+                    case 'Agendar':
+                        Marker.prototype.options.icon = this.defaultIcon;
+                        break;
+                    case 'Agendado':
+                        Marker.prototype.options.icon = this.greenIcon;
+                        break;
+                    case 'URGENTE':
+                        Marker.prototype.options.icon = this.redIcon;
+                        break;
+                    default:
+                        Marker.prototype.options.icon = this.greyIcon;
+                        break;
+                }
             }
 
-            //  igreja.ordemServico !== undefined && igreja.ordemServico.length >= 1 ? this.redIcon : this.defaultIcon;
             L.marker([igreja.lat || '', igreja.lng || ''])
             .bindPopup(popupContent)
             .openPopup()
             .addTo(this.layerGroup);
         });
+    }
+
+    checkOS(OS: {status: string}) {
+        return OS.status.includes('URGENTE') || OS.status.includes('Agendar') || OS.status.includes('Agendado');
     }
 
     onChange(church: Igreja) {

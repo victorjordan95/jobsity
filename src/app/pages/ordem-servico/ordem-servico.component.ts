@@ -38,7 +38,7 @@ export class OrdemServicoComponent implements OnInit {
     }
 
     delete(e) {
-        this.deleteModal.showModal(e.id, `Ordem de Serviço "${e.numeroOS}" da igreja ${e.ccbinfo.bairro}`, 'ordemServico');
+        this.deleteModal.showModal(e.id, `Ordem de Serviço "${e.numeroOS}" da igreja ${e.ccbinfo.bairro}`, 'ordemServico', e);
     }
 
     getOrdemServico() {
@@ -53,8 +53,11 @@ export class OrdemServicoComponent implements OnInit {
                         if (!ordem.tecnico1Info && !ordem.tecnico2Info) {
                             return;
                         }
-                        if ( ordem.tecnico1Info.nome === user[2] || ordem.tecnico2Info.nome === user[2]) {
-                            return [...this.orders, ordem];
+                        if (ordem.tecnico1Info !== undefined && ordem.tecnico1Info.nome === user[2]) {
+                            this.orders.push(ordem);
+                        }
+                        if (ordem.tecnico2Info !== undefined && ordem.tecnico2Info.nome === user[2]) {
+                            this.orders.push(ordem);
                         }
                     });
                 }

@@ -20,10 +20,11 @@ export class DeleteModalComponent implements OnInit {
     ngOnInit() {
     }
 
-    showModal(id, name, route) {
+    showModal(id, name, route, optional?) {
         this.data.id = id;
         this.data.nome = name;
         this.data.route = route;
+        this.data.optional = optional ? optional : null;
         this.createModal.show();
     }
 
@@ -36,6 +37,15 @@ export class DeleteModalComponent implements OnInit {
             res => {
                 this.createModal.hide();
                 this.toastr.success(`Removido com sucesso!`, 'Sucesso!');
+                if (this.data.route === 'ordemServico') {
+                    this.data.optional.ccbinfo.ordemServico.osNumber = '';
+                    this.data.optional.ccbinfo.ordemServico.status = '';
+                    this.angularFire.list(`igrejas/`).set(`${this.data.optional.ccbinfo.id}`, this.data.optional.ccbinfo)
+                    .then()
+                    .catch((error: any) => {
+                        this.toastr.error('Ocorreu um erro ao adicionar a ordem à igreja!', 'Erro!');
+                    });
+                }
             },
             err => {
                 this.toastr.error(`Ocorreu um erro ao remover ${this.data.route}!`, 'Erro!');
