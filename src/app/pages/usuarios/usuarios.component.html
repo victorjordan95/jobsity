@@ -17,7 +17,8 @@
     <div class="card-body">
       <div class="data-table__header">
         <div class="form-group data-table__filter">
-          <input autocomplete="false"placeholder="Filtrar por todas as colunas" [(ngModel)]="filter" class="form-control">
+          <input autocomplete="false" placeholder="Filtrar por todas as colunas" [(ngModel)]="filter"
+            class="form-control">
           <i class="form-group__bar"></i>
         </div>
       </div>
@@ -26,13 +27,22 @@
           <thead>
             <tr>
               <th>Ação</th>
-              <th>Nome</th>
+              <th (click)="sort('nome')" class="pointer">
+                Encarregado Manutenção
+                <i class="zmdi" *ngIf="key =='nome'"
+                  [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
               <th>E-mail</th>
-              <th>Tipo de Usuário</th>
+              <th (click)="sort('role')" class="pointer">
+                Encarregado Manutenção
+                <i class="zmdi" *ngIf="key =='role'"
+                  [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let usuario of usuarios | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
+            <tr
+              *ngFor="let usuario of usuarios | filter:filter | paginate: { itemsPerPage: 10, currentPage: page } | orderBy: key : reverse;">
               <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
@@ -48,7 +58,8 @@
             </tr>
           </tbody>
         </table>
-        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo">
+        </pagination-controls>
       </div>
       <ng-template #notLoaded>
         <p>Loading...</p>

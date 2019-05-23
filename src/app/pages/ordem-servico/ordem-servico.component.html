@@ -28,32 +28,55 @@
           <thead>
             <tr>
               <th>Ação</th>
-              <th>Número OS</th>
-              <th>Igreja</th>
+              <th (click)="sort('order.numeroOS')" class="pointer">
+                Número OS
+                <i class="zmdi" *ngIf="key =='order.numeroOS'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
+              <th (click)="sort('ccbName')" class="pointer">
+                Igreja
+                <i class="zmdi" *ngIf="key =='ccbName'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
               <th>Motivo</th>
               <th>Solução</th>
-              <th>Técnico 1</th>
-              <th>Técnico 2</th>
-              <th>Status</th>
-              <th>Data Cadastro</th>
-              <th>Data Atendimento</th>
+              <th (click)="sort('tecnico1')" class="pointer">
+                Técnico 1
+                <i class="zmdi" *ngIf="key =='tecnico1'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
+              <th (click)="sort('tecnico2')" class="pointer">
+                Técnico 2
+                <i class="zmdi" *ngIf="key =='tecnico2'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
+              <th (click)="sort('status')" class="pointer">
+                Status
+                <i class="zmdi" *ngIf="key =='status'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
+              <th (click)="sort('order.dataCadastro')" class="pointer">
+                Data Cadastro
+                <i class="zmdi" *ngIf="key =='cadastro'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
+              <th (click)="sort('order.dataAtendimento')" class="pointer">
+                Data Atendimento
+                <i class="zmdi" *ngIf="key =='atendimento'" [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+              </th>
               <th>Observações</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let order of orders | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
+            <tr
+              *ngFor="let order of orders | filter:filter | paginate: { itemsPerPage: 10, currentPage: page } | orderBy: key : reverse;">
               <td>
                 <div dropdown>
                   <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
                   <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
                     <span class="dropdown-item" (click)="showModal(order)">Editar</span>
                     <span class="dropdown-item" (click)="viewModalOS(order)">Visualizar</span>
-                    <span class="dropdown-item" (click)="delete(order)" *ngIf="shared.getUserRole() === 'ADMIN'">Excluir</span>
+                    <span class="dropdown-item" (click)="delete(order)"
+                      *ngIf="shared.getUserRole() === 'ADMIN'">Excluir</span>
                   </div>
                 </div>
               </td>
               <td>{{order.numeroOS}}</td>
-              <td>{{order.ccbinfo.bairro}}</td>
+              <td>{{order.ccbName}}</td>
               <td class="td-overflow">{{order.motivo}}</td>
               <td class="td-overflow">{{order.solucao}}</td>
               <td>
@@ -84,7 +107,8 @@
             </tr>
           </tbody>
         </table>
-        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo">
+        </pagination-controls>
       </div>
       <ng-template #notLoaded>
         <p>Loading...</p>

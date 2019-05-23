@@ -18,6 +18,8 @@ export class IgrejasComponent implements OnInit {
     public isLoaded = true;
     public filter = '';
     public page = 1;
+    public key = 'bairro';
+    public reverse = false;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth) {
     }
@@ -42,6 +44,11 @@ export class IgrejasComponent implements OnInit {
                 this.isLoaded = true;
             }
         );
+    }
+
+    sort(key: string) {
+        this.key = key;
+        this.reverse = !this.reverse;
     }
 
 }

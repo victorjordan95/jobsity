@@ -18,6 +18,8 @@ export class UsuariosComponent implements OnInit {
     public isLoaded = true;
     public filter = '';
     public page = 1;
+    public key = 'nome';
+    public reverse = false;
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth, private toastr: ToastrService) {
     }
@@ -38,6 +40,11 @@ export class UsuariosComponent implements OnInit {
                 this.isLoaded = true;
             }
         );
+    }
+
+    sort(key: string) {
+        this.key = key;
+        this.reverse = !this.reverse;
     }
 
 }

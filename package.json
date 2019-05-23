@@ -37,6 +37,7 @@
     "ng2-search-filter": "^0.4.7",
     "ngx-bootstrap": "^3.0.1",
     "ngx-mask": "^7.3.6",
+    "ngx-order-pipe": "^2.0.2",
     "ngx-pagination": "^3.2.1",
     "ngx-perfect-scrollbar": "^6.3.1",
     "ngx-toastr": "^9.1.1",

@@ -21,6 +21,8 @@ export class OrdemServicoComponent implements OnInit {
     public isLoaded = true;
     public filter = '';
     public page = 1;
+    public key = 'igreja';
+    public reverse = false;
 
     constructor(private angularFire: AngularFireDatabase, public shared: SharedService) {
     }
@@ -39,6 +41,11 @@ export class OrdemServicoComponent implements OnInit {
 
     delete(e) {
         this.deleteModal.showModal(e.id, `Ordem de Serviço "${e.numeroOS}" da igreja ${e.ccbinfo.bairro}`, 'ordemServico', e);
+    }
+
+    sort(key: string) {
+        this.key = key;
+        this.reverse = !this.reverse;
     }
 
     getOrdemServico() {

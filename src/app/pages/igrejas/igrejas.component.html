@@ -29,15 +29,35 @@
                         <tr>
                             <th>Ação</th>
                             <th>Código CCB</th>
-                            <th>Nome Igreja</th>
+                            <th (click)="sort('bairro')" class="pointer">
+                              Nome Igreja
+                              <i class="zmdi" *ngIf="key =='bairro'"
+                                [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                            </th>
                             <th>Endereço</th>
                             <!-- <th>CEP</th> -->
-                            <th>Cidade</th>
+                            <th (click)="sort('cidade')" class="pointer">
+                              Cidade
+                              <i class="zmdi" *ngIf="key =='cidade'"
+                                [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                            </th>
                             <!-- <th>UF</th> -->
-                            <th>Encarregado Manutenção</th>
+                            <th (click)="sort('tecnico')" class="pointer">
+                              Encarregado Manutenção
+                              <i class="zmdi" *ngIf="key =='tecnico'"
+                                [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                            </th>
                             <!-- <th>Número Celular</th> -->
-                            <th>Marca Órgão</th>
-                            <th>Modelo Órgão</th>
+                            <th (click)="sort('marca')" class="pointer">
+                              Marca Órgão
+                              <i class="zmdi" *ngIf="key =='marca'"
+                                [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                            </th>
+                            <th (click)="sort('modelo')" class="pointer">
+                              Modelo Órgão
+                              <i class="zmdi" *ngIf="key =='modelo'"
+                                [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
+                            </th>
                             <!-- <th>Número Órgão</th> -->
                             <!-- <th>Patrimônio Órgão</th> -->
                             <!-- <th>Acessório Órgão</th> -->
@@ -47,7 +67,7 @@
                     </thead>
                     <tbody>
                         <tr
-                            *ngFor="let igreja of igrejas | filter:filter | paginate: { itemsPerPage: 10, currentPage: page };">
+                            *ngFor="let igreja of igrejas | filter:filter | paginate: { itemsPerPage: 10, currentPage: page } | orderBy: key : reverse;">
                             <td>
                                 <div dropdown>
                                     <i dropdownToggle class="actions__item zmdi zmdi-more-vert"></i>
