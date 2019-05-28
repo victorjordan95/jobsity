@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CrudService {
 
-    // baseURL = environment.baseURL;
+    public baseURL = environment.baseURL;
     private header = new HttpHeaders({
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json'
@@ -18,4 +18,9 @@ export class CrudService {
     // getProduct() {
     //     return this.http.get(`${this.baseURL}/api/products`);
     // }
+
+    public saveOption(data: any, route: string) {
+        return this.http.post(`${this.baseURL}/api/${route}`, data, { headers: this.header });
+    }
+
 }

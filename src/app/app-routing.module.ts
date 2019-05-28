@@ -13,6 +13,7 @@ import { StatusComponent } from './pages/status/status.component';
 import { UpdatePasswordComponent } from './pages/profile/update-password/update-password.component';
 import { OrdemServicoComponent } from './pages/ordem-servico/ordem-servico.component';
 import { MapaComponent } from './pages/mapa/mapa.component';
+import { EmailComponent } from './pages/email/email.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
   { path: 'status', component: StatusComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
   { path: 'mapa', component: MapaComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN', 'MINISTERIO', 'USER'] } },
+  { path: 'enviar-mensagem', component: EmailComponent, canActivate: [RoleGuardService], data: { expectedRole: ['ADMIN'] } },
 ];
 
 @NgModule({

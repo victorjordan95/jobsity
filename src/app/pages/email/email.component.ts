@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { CrudService } from '../../shared/services/crud.service';
+import { ToastrService } from 'ngx-toastr';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+@Component({
+    selector: 'app-email',
+    templateUrl: './email.component.html',
+    styleUrls: ['./email.component.scss'],
+    providers: [AngularFireDatabase, CrudService]
+})
+export class EmailComponent implements OnInit {
+    public usuarios;
+    public isLoaded: boolean;
+    public selectedUsers: [string];
+    public subscription: Subscription;
+
+    public baseURL = environment.baseURL;
+
+    private header = new HttpHeaders({
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json'
+    });
+
+    email: string;
+    recipient: [string]; 
+    subject: string;
+    text: string;
+
+    constructor(private angularFire: AngularFireDatabase, 
+                private _crudService: CrudService, 
+                private toastr: ToastrService,
+                private http: HttpClient) { }
+
+    ngOnInit() {
+        this.getUsuarios();
+        this.email = atob(localStorage.getItem('usuario')).split(',')[0];
+        // this.recipient = '';
+    }
+
+    getUsuarios() {
+        this.isLoaded = false;
+        this.angularFire.list(`usuarios`).valueChanges().subscribe(
+            data => {
+                this.usuarios = data;
+                this.isLoaded = true;
+                console.log(data);
+            }
+        );
+    }
+
+    onSubmit(form: NgForm) {
+        console.log(form.value);
+        this.subscription = this._crudService.saveOption(form.value, 'send')
+            .subscribe(
+                success => {
+                    this.toastr.success(`E-mail enviado com sucesso`, 'Enviado');
+                },
+                err => {
+                    this.toastr.error(`${err.message}`, 'Error!');
+                    console.log(err);
+                }
+            );
+
+    }
+
+    // saveOption(data: any, route: string) {
+    //     return this.http.post(`${this.baseURL}/api/${route}`, data, { headers: this.header });
+    // }
+
+}

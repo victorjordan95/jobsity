@@ -51,6 +51,7 @@ import { OrdemServicoModalComponent } from './pages/ordem-servico/ordem-servico-
 import { OrdemServicoModalViewComponent } from './pages/ordem-servico/ordem-servico-modal-view/ordem-servico-modal-view.component';
 import { LoaderComponent } from './layout/loader/loader.component';
 import { MapaComponent } from './pages/mapa/mapa.component';
+import { EmailComponent } from './pages/email/email.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -85,7 +86,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     OrdemServicoModalComponent,
     OrdemServicoModalViewComponent,
     LoaderComponent,
-    MapaComponent
+    MapaComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

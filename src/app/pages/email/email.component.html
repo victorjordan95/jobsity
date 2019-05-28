@@ -1,0 +1,54 @@
+<app-header></app-header>
+<app-loader *ngIf="!isLoaded"></app-loader>
+
+<section class="content">
+  <header class="content__title">
+    <h1>Enviar Mensagem</h1>
+  </header>
+
+  <div class="card">
+    <div class="card-body">
+      <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
+
+        <input type="hidden" name="email" [(ngModel)]="email">
+
+        <div class="form-group">
+          <label>Assunto</label>
+          <input 
+            autocomplete="false" 
+            type="text" 
+            class="form-control" 
+            placeholder="Assunto do e-mail"
+            [(ngModel)]="subject" 
+            name="subject" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Destinatário(s)</label>
+          <ng-select 
+            class="form-control"
+            [items]="usuarios" 
+            bindLabel="email" 
+            name="recipient" 
+            bindValue="email"
+            [multiple]="true"
+            [closeOnSelect]="false"
+            [(ngModel)]="recipient"
+            placeholder="E-mail do destinatário">
+          </ng-select>
+        </div>
+
+        <div class="form-group">
+          <label>Mensagem</label>
+          <textarea name="text" [(ngModel)]="text" class="form-control"
+            placeholder="Digite sua mensagem"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!f.valid">Salvar</button>
+
+      </form>
+    </div>
+  </div>
+
+</section>
