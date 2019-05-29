@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
     tasksData: Array<any>;
     maThemeModel: string;
     sidebarVisible = false;
-    public userName;
-    public userEmail;
+    public userName: string;
+    public userEmail: string;
 
     itemsMenu = [
         { link: 'agenda', icon: 'zmdi-calendar-note', label: 'Agenda', role: ['ADMIN', 'USER'] },
@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
         { link: 'status', icon: 'zmdi-alert-circle-o', label: 'Status', role: ['ADMIN'] },
         { link: 'ordem-servico', icon: 'zmdi-file-text', label: 'Ordem de Serviço', role: ['ADMIN', 'USER'] },
         { link: 'mapa', icon: 'zmdi-map', label: 'Mapa com as Igrejas', role: ['ADMIN', 'USER', 'MINISTERIO'] },
+        { link: 'enviar-mensagem', icon: 'zmdi-email', label: 'Enviar E-mail', role: ['ADMIN'] },
     ];
 
     // Sub menu visibilities

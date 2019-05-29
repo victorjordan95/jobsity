@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CrudService } from '../../shared/services/crud.service';
 import { ToastrService } from 'ngx-toastr';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -27,19 +27,18 @@ export class EmailComponent implements OnInit {
     });
 
     email: string;
-    recipient: [string]; 
+    recipient: string[];
     subject: string;
     text: string;
 
-    constructor(private angularFire: AngularFireDatabase, 
-                private _crudService: CrudService, 
-                private toastr: ToastrService,
-                private http: HttpClient) { }
+    constructor(private angularFire: AngularFireDatabase,
+        private _crudService: CrudService,
+        private toastr: ToastrService,
+        private http: HttpClient) { }
 
     ngOnInit() {
         this.getUsuarios();
         this.email = atob(localStorage.getItem('usuario')).split(',')[0];
-        // this.recipient = '';
     }
 
     getUsuarios() {
@@ -48,28 +47,20 @@ export class EmailComponent implements OnInit {
             data => {
                 this.usuarios = data;
                 this.isLoaded = true;
-                console.log(data);
             }
         );
     }
 
     onSubmit(form: NgForm) {
-        console.log(form.value);
-        this.subscription = this._crudService.saveOption(form.value, 'send')
-            .subscribe(
-                success => {
-                    this.toastr.success(`E-mail enviado com sucesso`, 'Enviado');
-                },
-                err => {
-                    this.toastr.error(`${err.message}`, 'Error!');
-                    console.log(err);
-                }
-            );
+        this.subscription = this._crudService.saveOption(form.value, 'send').subscribe(
+            success => {
+                this.toastr.success(`E-mail enviado com sucesso`, 'Enviado');
+            },
+            err => {
+                this.toastr.error(`${err.message}`, 'Error!');
+                console.log(err);
+            });
 
     }
-
-    // saveOption(data: any, route: string) {
-    //     return this.http.post(`${this.baseURL}/api/${route}`, data, { headers: this.header });
-    // }
 
 }
