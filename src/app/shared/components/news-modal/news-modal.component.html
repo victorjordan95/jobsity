@@ -1,0 +1,26 @@
+<div class="modal fade" bsModal #createModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close()">&times;</button>
+        <h4 class="modal-title">Novidades no SGO</h4>
+      </div>
+        <div class="modal-body">
+            <p>
+               Estas são as principais novidades do SGO:
+            </p>
+            <ul>
+              <li>UM</li>
+              <li>UM</li>
+              <li>UM</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" (click)="close()">Fechar</button>
+        </div>
+
+
+    </div>
+  </div>
+</div>

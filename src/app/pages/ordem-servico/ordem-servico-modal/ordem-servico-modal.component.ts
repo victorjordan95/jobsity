@@ -66,11 +66,11 @@ export class OrdemServicoModalComponent implements OnInit {
             this.ordemServico['ccbinfo'] = (ccbinfo);
         }
         if (t1.length) {
-            t1 = {'nome': t1[0].nome, 'celular': t1[0].celular ? t1[0].celular : ''};
+            t1 = {'nome': t1[0].nome, 'celular': t1[0].celular ? t1[0].celular : '', 'email': t1[0].email ? t1[0].email : ''};
             this.ordemServico['tecnico1Info'] = t1;
         }
         if (t2.length) {
-            t2 = {'nome': t2[0].nome, 'celular': t2[0].celular ? t2[0].celular : ''};
+            t2 = {'nome': t2[0].nome, 'celular': t2[0].celular ? t2[0].celular : '', 'email': t2[0].email ? t2[0].email : ''};
             this.ordemServico['tecnico2Info'] = t2;
         }
 
@@ -85,7 +85,9 @@ export class OrdemServicoModalComponent implements OnInit {
                 this.createModal.hide();
                 this.ordemServico = new OrdemServico;
                 this.toastr.success('Status salvo com sucesso!', 'Sucesso!');
-                this.sendEmail(t1, t2);
+                if (!this.isEditing) {
+                    this.sendEmail(t1, t2);
+                }
             })
             .catch((error) => {
                 this.toastr.error('Ocorreu um erro ao adicionar a ordem de serviço!', 'Erro!');
@@ -112,16 +114,15 @@ export class OrdemServicoModalComponent implements OnInit {
     }
 
     private sendEmail(t1: Tecnico, t2?: Tecnico): void {
-        console.log(t1);
-        console.log(t2);
-        // this.subscription = this._crudService.saveOption(form.value, 'send').subscribe(
-        //     success => {
-        //         this.toastr.success(`E-mail enviado com sucesso`, 'Enviado');
-        //     },
-        //     err => {
-        //         this.toastr.error(`${err.message}`, 'Error!');
-        //         console.log(err);
-        //     });
+        const emailForm = {
+            recipient: `${t1.email}${t2 ? `, ${t2.email}` : ''}`,
+            subject: 'Você foi adicionado em uma OS! - SGO'
+        };
+
+        this.subscription = this._crudService.saveOption(emailForm, 'send-email-order').subscribe(
+            success => console.log(success),
+            err => console.log(err)
+        );
     }
 
 }

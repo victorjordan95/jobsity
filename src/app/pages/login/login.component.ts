@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
                         this.toastr.success(`Seja bem-vindo ao sistema, ${data[2]}`, 'Bem-vindo!');
                         this.isLoading = false;
                         this.router.navigate(['/mapa'])
-                        data[3] === 'MINISTERIO' ? this.router.navigate(['/mapa']) : this.router.navigate(['/agenda']);
+                        data[4] === 'MINISTERIO' ? this.router.navigate(['/mapa']) : this.router.navigate(['/agenda']);
                     }
                 );
             })

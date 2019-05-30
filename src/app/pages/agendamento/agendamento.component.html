@@ -1,6 +1,7 @@
 <app-layout></app-layout>
 <app-loader *ngIf="!calendarIsLoaded"></app-loader>
 <app-criar-evento (modalAgendamento)='updateSchedules($event)' [events]="calendarOptions.events"></app-criar-evento>
+<app-news-modal></app-news-modal>
 <section class="content">
     <header class="content__title">
         <h1>Agenda</h1>
