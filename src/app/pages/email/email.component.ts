@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 export class EmailComponent implements OnInit {
     public usuarios;
     public isLoaded: boolean;
-    public selectedUsers: [string];
+    public selectedUsers: string[];
     public subscription: Subscription;
 
     public baseURL = environment.baseURL;

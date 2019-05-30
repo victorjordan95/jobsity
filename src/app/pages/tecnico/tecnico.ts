@@ -10,4 +10,5 @@ export class Tecnico {
     cidade: String;
     uf: string;
     comumCongregacao: any;
+    email: string;
 }

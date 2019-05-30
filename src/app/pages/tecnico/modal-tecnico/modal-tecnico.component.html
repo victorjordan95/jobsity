@@ -11,48 +11,54 @@
 
 
         <div class="modal-body">
-          <input autocomplete="false"autocomplete="false"type="hidden" name="id" [(ngModel)]="tecnico.id">
+          <input autocomplete="false"type="hidden" name="id" [(ngModel)]="tecnico.id">
 
           <div class="form-group">
             <label>Nome</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Nome do técnico" [(ngModel)]="tecnico.nome" name="nome"
+            <input autocomplete="false"type="text" class="form-control" placeholder="Nome do técnico" [(ngModel)]="tecnico.nome" name="nome"
               required>
           </div>
 
           <div class="form-group">
             <label>Celular</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Celular do técnico" [(ngModel)]="tecnico.celular" name="celular"
+            <input autocomplete="false"type="text" class="form-control" placeholder="Celular do técnico" [(ngModel)]="tecnico.celular" name="celular"
               required mask="(00) 0000-0000?0">
           </div>
 
           <div class="form-group">
+            <label>E-mail</label>
+            <input autocomplete="false" type="email" class="form-control" placeholder="E-mail do técnico" [(ngModel)]="tecnico.email" name="email"
+              required>
+          </div>
+
+          <div class="form-group">
             <label>Rua</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Rua" [(ngModel)]="tecnico.rua" name="rua" required>
+            <input autocomplete="false"type="text" class="form-control" placeholder="Rua" [(ngModel)]="tecnico.rua" name="rua" required>
           </div>
 
           <div class="form-group">
             <label>Número</label>
-            <input autocomplete="false"autocomplete="false"type="number" class="form-control" placeholder="Número" [(ngModel)]="tecnico.numero" name="numero" required>
+            <input autocomplete="false"type="number" class="form-control" placeholder="Número" [(ngModel)]="tecnico.numero" name="numero" required>
           </div>
 
           <div class="form-group">
             <label>Complemento</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Complemento" [(ngModel)]="tecnico.complemento" name="complemento">
+            <input autocomplete="false"type="text" class="form-control" placeholder="Complemento" [(ngModel)]="tecnico.complemento" name="complemento">
           </div>
 
           <div class="form-group">
             <label>Bairro</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Bairro" [(ngModel)]="tecnico.bairro" name="bairro" required>
+            <input autocomplete="false"type="text" class="form-control" placeholder="Bairro" [(ngModel)]="tecnico.bairro" name="bairro" required>
           </div>
 
           <div class="form-group">
             <label>CEP</label>
-            <input autocomplete="false" autocomplete="false" type="text" class="form-control" placeholder="CEP" [(ngModel)]="tecnico.cep" name="cep" required mask="00000-000">
+            <input autocomplete="false"  type="text" class="form-control" placeholder="CEP" [(ngModel)]="tecnico.cep" name="cep" required mask="00000-000">
           </div>
 
           <div class="form-group">
             <label>Cidade</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Cidade" [(ngModel)]="tecnico.cidade" name="cidade" required>
+            <input autocomplete="false"type="text" class="form-control" placeholder="Cidade" [(ngModel)]="tecnico.cidade" name="cidade" required>
           </div>
 
           <div class="form-group">
@@ -66,7 +72,7 @@
 
           <div class="form-group w-100">
             <label>Comum Congregação</label>
-            <input autocomplete="false"autocomplete="false"type="text" class="form-control" placeholder="Comum Congregação" [(ngModel)]="tecnico.comumCongregacao" name="comumCongregacao" required>
+            <input autocomplete="false" type="text" class="form-control" placeholder="Comum Congregação" [(ngModel)]="tecnico.comumCongregacao" name="comumCongregacao" required>
           </div>
 
         </div>

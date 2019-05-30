@@ -15,6 +15,7 @@ export class TecnicoComponent implements OnInit {
     @ViewChild(ModalTecnicoComponent) modalComponent: ModalTecnicoComponent;
     @ViewChild(DeleteModalComponent) deleteModal: DeleteModalComponent;
     public tecnicos;
+    usuarios;
     public isLoaded = true;
     public filter = '';
     public page = 1;

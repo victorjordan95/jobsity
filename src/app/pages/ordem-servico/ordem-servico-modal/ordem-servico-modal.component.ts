@@ -5,13 +5,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OrdemServico } from '../OrdemServico';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { CrudService } from '../../../shared/services/crud.service';
+import { Subscription } from 'rxjs';
+import { Tecnico } from '../../tecnico/tecnico';
 
 
 @Component({
     selector: 'app-ordem-servico-modal',
     templateUrl: './ordem-servico-modal.component.html',
     styleUrls: ['./ordem-servico-modal.component.scss'],
-    providers: [AngularFireDatabase, SharedService]
+    providers: [AngularFireDatabase, SharedService, CrudService]
 })
 export class OrdemServicoModalComponent implements OnInit {
     @ViewChild('createModal') createModal: ModalDirective;
@@ -19,10 +22,12 @@ export class OrdemServicoModalComponent implements OnInit {
     public isEditing = false;
     public churches;
     public allStatus;
-    public roleUser;
+    public roleUser: String;
     public tecnicos;
+    public subscription: Subscription;
 
-    constructor(private angularFire: AngularFireDatabase, private toastr: ToastrService, public shared: SharedService) { }
+    constructor(private angularFire: AngularFireDatabase, private toastr: ToastrService,
+                public shared: SharedService, private _crudService: CrudService) { }
 
     ngOnInit() {
         this.roleUser = this.shared.getUserRole();
@@ -80,6 +85,7 @@ export class OrdemServicoModalComponent implements OnInit {
                 this.createModal.hide();
                 this.ordemServico = new OrdemServico;
                 this.toastr.success('Status salvo com sucesso!', 'Sucesso!');
+                this.sendEmail(t1, t2);
             })
             .catch((error) => {
                 this.toastr.error('Ocorreu um erro ao adicionar a ordem de serviço!', 'Erro!');
@@ -103,6 +109,19 @@ export class OrdemServicoModalComponent implements OnInit {
         this.angularFire.list(`tecnicos`).valueChanges().subscribe(
             data => this.tecnicos = data
         );
+    }
+
+    private sendEmail(t1: Tecnico, t2?: Tecnico): void {
+        console.log(t1);
+        console.log(t2);
+        // this.subscription = this._crudService.saveOption(form.value, 'send').subscribe(
+        //     success => {
+        //         this.toastr.success(`E-mail enviado com sucesso`, 'Enviado');
+        //     },
+        //     err => {
+        //         this.toastr.error(`${err.message}`, 'Error!');
+        //         console.log(err);
+        //     });
     }
 
 }
