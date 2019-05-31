@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Icon, icon, Marker, marker } from 'leaflet';
 import { Igreja } from '../igrejas/igreja';
+import { NewsModalComponent } from 'src/app/shared/components/news-modal/news-modal.component';
 declare let L;
 
 @Component({
@@ -12,6 +13,7 @@ declare let L;
     providers: [AngularFireDatabase, AngularFireAuth],
 })
 export class MapaComponent implements OnInit {
+    @ViewChild(NewsModalComponent) newsModal: NewsModalComponent;
 
     public layerGroup: any;
     public igrejas: [Igreja];
@@ -64,6 +66,13 @@ export class MapaComponent implements OnInit {
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);
+    }
+
+    ngAfterViewInit(): void {
+        const readNews = localStorage.getItem('readNews');
+        if (readNews == 'false') {
+            this.newsModal.showModal();
+        }
     }
 
     getIgrejas(): void {
