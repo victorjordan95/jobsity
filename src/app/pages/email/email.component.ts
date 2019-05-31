@@ -19,13 +19,6 @@ export class EmailComponent implements OnInit {
     public selectedUsers: string[];
     public subscription: Subscription;
 
-    public baseURL = environment.baseURL;
-
-    private header = new HttpHeaders({
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json'
-    });
-
     email: string;
     recipient: string[];
     subject: string;

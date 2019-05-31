@@ -11,6 +11,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import { FirebaseConfig } from './../environments/firebase.config';
 import { AngularFireModule } from '@angular/fire';
@@ -53,6 +54,8 @@ import { LoaderComponent } from './layout/loader/loader.component';
 import { MapaComponent } from './pages/mapa/mapa.component';
 import { EmailComponent } from './pages/email/email.component';
 import { NewsModalComponent } from './shared/components/news-modal/news-modal.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PieChartComponent } from './pages/dashboard/pie-chart/pie-chart.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -89,7 +92,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoaderComponent,
     MapaComponent,
     EmailComponent,
-    NewsModalComponent
+    NewsModalComponent,
+    DashboardComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +120,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxPaginationModule,
     NgxMaskModule.forRoot(),
     NgSelectModule,
-    OrderModule
+    OrderModule,
+    NgxChartsModule
   ],
   providers: [
     {

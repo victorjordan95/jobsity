@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@ng-select/ng-select": "^2.20.0",
+    "@swimlane/ngx-charts": "^11.1.0",
     "angularfire2": "^5.0.0-rc.10",
     "ap-angular2-fullcalendar": "^1.6.4",
     "bootstrap": "4.0.0-beta",
