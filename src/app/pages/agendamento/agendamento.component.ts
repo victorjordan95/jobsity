@@ -4,7 +4,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { CriarEventoComponent } from './criar-evento/criar-evento.component';
-import { DeleteModalComponent } from 'src/app/shared/components/delete-modal/delete-modal.component';
 import { NewsModalComponent } from 'src/app/shared/components/news-modal/news-modal.component';
 
 @Component({
@@ -67,8 +66,9 @@ export class AgendamentoComponent implements OnInit {
         this.userId = atob(localStorage.getItem('usuario')).split(',')[1];
         this.readNews = atob(localStorage.getItem('usuario')).split(',')[3];
         this.getEvents();
+        
     }
-
+    
     showModal(event?) {
         this.modalComponent.showModal(this.selectedRoomId, event);
     }
@@ -81,7 +81,7 @@ export class AgendamentoComponent implements OnInit {
                 teste = events;
                 this.calendarOptions.events = teste;
                 this.calendarIsLoaded = true;
-                if (this.readNews === 'false') {
+                if (this.readNews) {
                     this.newsModal.showModal();
                 }
             }

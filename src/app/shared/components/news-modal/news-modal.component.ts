@@ -19,7 +19,6 @@ export class NewsModalComponent implements OnInit {
 
   ngOnInit() {
     this.getUsuario();
-    this.userId = atob(localStorage.getItem('usuario')).split(',')[1];
   }
 
   showModal() {
@@ -31,22 +30,22 @@ export class NewsModalComponent implements OnInit {
   }
 
   close() {
-    console.log(this.userId);
-    console.log(this.usuario);
-    this.usuario['readNews'] = true;
-    console.log(this.usuario);
-  //   this.createModal.hide();
-  //   this.angularFire.list(`usuarios/`).set(`${this.userId}`, form.value).then((t: any) => {
-  //     this.createModal.hide();
-  //     this.toastr.success('Usuário editado com sucesso!', 'Sucesso!');
-  // });
+    const userUpdated = {
+      email: this.usuario[0],
+      id: this.usuario[1],
+      nome: this.usuario[2],
+      readNews: true,
+      role: this.usuario[4]
+    }
+    this.createModal.hide();
+    this.angularFire.list(`usuarios/`).set(`${this.userId}`, userUpdated).then((t: any) => {});
   }
 
   getUsuario() {
+    this.userId = atob(localStorage.getItem('usuario')).split(',')[1];
     this.angularFire.list(`usuarios/${this.userId}`).valueChanges().subscribe(
         data => {
-          console.log(data);
-            this.usuario = data;
+          this.usuario = data;
         }
     );
 }
