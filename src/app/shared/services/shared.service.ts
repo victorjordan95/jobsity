@@ -14,7 +14,7 @@ export class SharedService {
     public userRole: String;
 
     constructor() {
-        this.userRole = atob(localStorage.getItem('usuario')).split(',')[3];
+        this.userRole = atob(localStorage.getItem('usuario')).split(',')[4];
         // Hidden the sidebar by default
         this.sidebarVisible = false;
 
@@ -34,7 +34,7 @@ export class SharedService {
     }
 
     getUserRole(): String {
-        return atob(localStorage.getItem('usuario')).split(',')[3];
+        return atob(localStorage.getItem('usuario')).split(',')[4];
     }
 
 

@@ -69,8 +69,8 @@ export class MapaComponent implements OnInit {
     }
 
     ngAfterViewInit(): void {
-        const readNews = atob(localStorage.getItem('usuario')).split(',')[3];
-        if (readNews) {
+        const readNews = localStorage.getItem('readNews');
+        if (readNews == 'false') {
             this.newsModal.showModal();
         }
     }

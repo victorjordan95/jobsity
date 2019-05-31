@@ -64,8 +64,14 @@ export class AgendamentoComponent implements OnInit {
 
     ngOnInit() {
         this.userId = atob(localStorage.getItem('usuario')).split(',')[1];
-        this.readNews = atob(localStorage.getItem('usuario')).split(',')[3];
+        this.readNews = localStorage.getItem('readNews');
         this.getEvents();
+    }
+
+    ngAfterViewInit(): void {
+        if (this.readNews == 'false') {
+            this.newsModal.showModal();
+        }
         
     }
     
@@ -81,9 +87,6 @@ export class AgendamentoComponent implements OnInit {
                 teste = events;
                 this.calendarOptions.events = teste;
                 this.calendarIsLoaded = true;
-                if (this.readNews) {
-                    this.newsModal.showModal();
-                }
             }
         );
     }

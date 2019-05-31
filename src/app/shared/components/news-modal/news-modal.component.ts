@@ -39,6 +39,7 @@ export class NewsModalComponent implements OnInit {
     }
     this.createModal.hide();
     this.angularFire.list(`usuarios/`).set(`${this.userId}`, userUpdated).then((t: any) => {});
+    localStorage.setItem('readNews', 'true')
   }
 
   getUsuario() {
