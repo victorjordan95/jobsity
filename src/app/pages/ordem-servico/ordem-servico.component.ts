@@ -53,7 +53,7 @@ export class OrdemServicoComponent implements OnInit {
         this.angularFire.list(`ordemServico`).valueChanges().subscribe(
             (data: any) => {
                 const user = atob(localStorage.getItem('usuario')).split(',');
-                if (user[3] === 'ADMIN') {
+                if (user[4] === 'ADMIN') {
                     this.orders = data;
                 } else {
                     data.forEach(ordem => {
