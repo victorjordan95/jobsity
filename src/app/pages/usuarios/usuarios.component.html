@@ -28,13 +28,13 @@
             <tr>
               <th>Ação</th>
               <th (click)="sort('nome')" class="pointer">
-                Encarregado Manutenção
+                Nome
                 <i class="zmdi" *ngIf="key =='nome'"
                   [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
               </th>
               <th>E-mail</th>
               <th (click)="sort('role')" class="pointer">
-                Encarregado Manutenção
+                Tipo usuário
                 <i class="zmdi" *ngIf="key =='role'"
                   [ngClass]="{'zmdi-chevron-up':reverse,'zmdi-chevron-down':!reverse}"></i>
               </th>

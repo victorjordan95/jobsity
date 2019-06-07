@@ -19,7 +19,7 @@ export class OrdemServicoComponent implements OnInit {
     @ViewChild(OrdemServicoModalViewComponent) viewModal: OrdemServicoModalViewComponent;
     public orders = [];
     public isLoaded = true;
-    public filter = '';
+    public filtro: string;
     public page = 1;
     public key = 'igreja';
     public reverse = false;
@@ -72,5 +72,28 @@ export class OrdemServicoComponent implements OnInit {
                 this.isLoaded = true;
             }
         );
+    }
+
+    getClass(status) {
+        switch (status) {
+            case 'Agendar':
+                return 'agendar'
+                break;
+            case 'Agendado':
+                return 'agendado'
+                break;
+            case 'URGENTE':
+                return 'urgente'
+                break;
+            case 'Não solucionado':
+                return 'nao-solucionado'
+                break;
+            case 'Contatar TOKAI':
+                return 'contatar'
+                break;
+            default:
+                return 'concluido'
+                break;
+        }
     }
 }

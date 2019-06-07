@@ -34,7 +34,7 @@
             </div>
           </div>
 
-          <div class="flex-row">
+          <!-- <div class="flex-row">
             <div class="form-group">
               <label>Data término</label>
               <input autocomplete="false"type="date" class="form-control" placeholder="Data de término" [(ngModel)]="agendamento.endDate"
@@ -45,15 +45,21 @@
               <input autocomplete="false"type="time" class="form-control" placeholder="Hora de término" [(ngModel)]="agendamento.endHour"
                 name="endHour" [disabled]="isViewMode">
             </div>
-          </div>
+          </div> -->
 
           <div class="flex-row">
               <label>Igreja</label>
-              <select class="form-control" [(ngModel)]="agendamento.igreja" placeholder="Selecione uma sala" name="igreja" [disabled]="isViewMode">
-                <option *ngFor="let church of churches" [ngValue]="church.id">
-                  {{church.nome}}
-                </option>
-              </select>
+              <ng-select 
+                    class="form-control"
+                    [items]="churches" 
+                    bindLabel="bairro" 
+                    bindValue="id"
+                    [disabled]="isViewMode"
+                    [(ngModel)]="agendamento.igreja"
+                    name="igreja"
+                    placeholder="Selecione uma igreja..."
+                >
+                </ng-select>
 
           </div>
 

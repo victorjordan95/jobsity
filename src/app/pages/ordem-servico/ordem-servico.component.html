@@ -98,7 +98,9 @@
                   Sem técnico.
                 </ng-template>
               </td>
-              <td>{{order.status}}</td>
+              <td>
+                <span class="badge" [ngClass]="getClass(order.status)">{{order.status}}</span>
+              </td>
               <td>{{order.dataCadastro | date: 'dd/MM/yyyy'}}</td>
               <td>{{order.dataAtendimento | date: 'dd/MM/yyyy'}}
                 <span *ngIf="!order.dataAtendimento">Pendente</span>

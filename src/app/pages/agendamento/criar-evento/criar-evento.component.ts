@@ -125,7 +125,7 @@ export class CriarEventoComponent implements OnInit {
             });
         }
 
-        if (this.canSave) {
+        if (this.canSave || !this.isViewMode) {
             this.angularFire.list(`agendamentos`).set(`${this.agendamento.id}`, event).then((t: any) => {
                 this.modalAgendamento.emit(event);
                 this.createModal.hide();
@@ -138,7 +138,7 @@ export class CriarEventoComponent implements OnInit {
     }
 
     enableEdit() {
-        this.isViewMode = !this.isViewMode;
+        this.isViewMode = false;
     }
 
 }

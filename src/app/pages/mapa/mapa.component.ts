@@ -35,8 +35,12 @@ export class MapaComponent implements OnInit {
         iconUrl: './../../../assets/leaflet/images/marker-icon-grey.png',
         shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
     });
-    private yellowIcon: Icon = icon({
-        iconUrl: './../../../assets/leaflet/images/marker-icon-yellow.png',
+    private orangeIcon: Icon = icon({
+        iconUrl: './../../../assets/leaflet/images/marker-icon-orange.png',
+        shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
+    });
+    private purpleIcon: Icon = icon({
+        iconUrl: './../../../assets/leaflet/images/marker-icon-violet.png',
         shadowUrl: './../../../assets/leaflet/images/marker-shadow.png'
     });
     selectedChurch: string[];
@@ -117,6 +121,12 @@ export class MapaComponent implements OnInit {
                         break;
                     case 'URGENTE':
                         Marker.prototype.options.icon = this.redIcon;
+                        break;
+                    case 'Não solucionado':
+                        Marker.prototype.options.icon = this.purpleIcon;
+                        break;
+                    case 'Contatar TOKAI':
+                        Marker.prototype.options.icon = this.orangeIcon;
                         break;
                     default:
                         Marker.prototype.options.icon = this.greyIcon;

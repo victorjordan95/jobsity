@@ -37,6 +37,7 @@ export class OrdemServicoModalComponent implements OnInit {
     }
 
     showModal(e?) {
+        debugger;
         if (e) {
             this.ordemServico = e;
             this.isEditing = true;
