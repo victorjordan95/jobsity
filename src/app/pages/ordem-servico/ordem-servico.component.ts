@@ -19,7 +19,7 @@ export class OrdemServicoComponent implements OnInit {
     @ViewChild(OrdemServicoModalViewComponent) viewModal: OrdemServicoModalViewComponent;
     public orders = [];
     public isLoaded = true;
-    public filtro: string;
+    public filter: string;
     public page = 1;
     public key = 'igreja';
     public reverse = false;
