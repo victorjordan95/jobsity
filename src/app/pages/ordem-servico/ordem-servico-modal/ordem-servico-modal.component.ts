@@ -25,9 +25,23 @@ export class OrdemServicoModalComponent implements OnInit {
     public roleUser: String;
     public tecnicos;
     public subscription: Subscription;
+    public userLat: number;
+    public userLng: number;
+    public totalOSValue: number;
 
     constructor(private angularFire: AngularFireDatabase, private toastr: ToastrService,
-                public shared: SharedService, private _crudService: CrudService) { }
+                public shared: SharedService, private _crudService: CrudService) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setLocale.bind(this));
+        } else {
+            console.log('Geolocation not supported');
+        }
+    }
+
+    setLocale(position: any): void {
+        this.userLat = position.coords.latitude;
+        this.userLng = position.coords.longitude;
+    }
 
     ngOnInit() {
         this.roleUser = this.shared.getUserRole();
@@ -37,10 +51,11 @@ export class OrdemServicoModalComponent implements OnInit {
     }
 
     showModal(e?) {
-        debugger;
         if (e) {
+            console.log(e);
             this.ordemServico = e;
             this.isEditing = true;
+            this.ordemServico.quilometros = Math.round(this.getDistance([e.ccbinfo.lat, e.ccbinfo.lng], [this.userLat, this.userLng]) * 2);
         } else {
             this.ordemServico = new OrdemServico;
             this.isEditing = false;
@@ -94,6 +109,25 @@ export class OrdemServicoModalComponent implements OnInit {
                 this.toastr.error('Ocorreu um erro ao adicionar a ordem de serviço!', 'Erro!');
                 console.log(`Error: ${error}`);
             });
+    }
+
+    private rad(x) {
+        return x * Math.PI / 180;
+    }
+
+    private getDistance(p1: number[], p2: number[]) {
+        // Earth’s mean radius in meter
+        const R = 6378137;
+        const dLat = this.rad(p2[0] - p1[0]);
+        const dLong = this.rad(p2[1] - p1[1]);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.rad(p1[0])) * Math.cos(this.rad(p2[0])) *
+            Math.sin(dLong / 2) * Math.sin(dLong / 2);
+
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const d = R * c;
+
+        return d / 1000; // returns the distance in kilometer
     }
 
     private getChurches() {

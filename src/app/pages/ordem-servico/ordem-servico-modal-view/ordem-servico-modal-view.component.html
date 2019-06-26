@@ -60,12 +60,12 @@
         </div>
 
         <div class="order-date">
-          <div class="date">
+          <div class="date" *ngIf="OS.tecnico1Info">
             <span class="b">Técnico 1</span>
             <span>{{OS.tecnico1Info.nome}}</span>
             <span>{{OS.tecnico1Info.celular | mask: '(00) 0000-0000?0'}}</span>
           </div>
-          <div class="date">
+          <div class="date" *ngIf="OS.tecnico2Info">
             <span class="b">Técnico 2</span>
             <span>{{OS.tecnico2Info.nome}}</span>
             <span>{{OS.tecnico2Info.celular | mask: '(00) 0000-0000?0'}}</span>

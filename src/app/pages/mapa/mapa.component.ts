@@ -57,6 +57,8 @@ export class MapaComponent implements OnInit {
 
     setLocale(position: any): void {
         this.map.setView([position.coords.latitude, position.coords.longitude], 15);
+        this.userLat = position.coords.latitude;
+        this.userLng = position.coords.longitude;
     }
 
     ngOnInit() {
@@ -74,7 +76,7 @@ export class MapaComponent implements OnInit {
 
     ngAfterViewInit(): void {
         const readNews = localStorage.getItem('readNews');
-        if (readNews == 'false') {
+        if (readNews === 'false') {
             this.newsModal.showModal();
         }
     }
@@ -90,7 +92,7 @@ export class MapaComponent implements OnInit {
         );
     }
 
-    addPointsInMap(igrejas: [Igreja]) {
+    addPointsInMap(igrejas: Igreja[]) {
         this.layerGroup = L.layerGroup().addTo(this.map);
         this.map.setZoom(14);
 
@@ -109,6 +111,10 @@ export class MapaComponent implements OnInit {
                 <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" target="_blank" style="margin-top: 16px">
                     Abrir no GPS
                 </a>
+                <span>
+                    Distância até essa igreja, aproximadamente:
+                    ${this.getDistance([igreja.lat, igreja.lng], [this.userLat, this.userLng])} metros
+                </span>
             `;
 
             if (igreja.ordemServico !== undefined) {
@@ -135,13 +141,34 @@ export class MapaComponent implements OnInit {
             }
 
             L.marker([igreja.lat || '', igreja.lng || ''])
-            .bindPopup(popupContent)
-            .openPopup()
-            .addTo(this.layerGroup);
+                .bindPopup(popupContent)
+                .openPopup()
+                .addTo(this.layerGroup);
         });
     }
 
-    checkOS(OS: {status: string}) {
+    rad(x) {
+        return x * Math.PI / 180;
+    }
+
+    getDistance(p1: number[], p2: number[]) {
+        // Earth’s mean radius in meter
+        const R = 6378137;
+        const dLat = this.rad(p2[0] - p1[0]);
+        const dLong = this.rad(p2[1] - p1[1]);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.rad(p1[0])) * Math.cos(this.rad(p2[0])) *
+            Math.sin(dLong / 2) * Math.sin(dLong / 2);
+
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const d = R * c;
+
+        return d; // returns the distance in meter
+    }
+
+
+
+    checkOS(OS: { status: string }) {
         return OS.status.includes('URGENTE') || OS.status.includes('Agendar') || OS.status.includes('Agendado');
     }
 

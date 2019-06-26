@@ -13,4 +13,9 @@ export class OrdemServico {
     dataCadastro: any;
     dataAtendimento?: any = '';
     observacoes?: String = '';
+    horaEntrada?: any;
+    horaSaida?: any;
+    quilometros?: any;
+    valorGas?: number;
+    consumoMedio?: number;
 }
