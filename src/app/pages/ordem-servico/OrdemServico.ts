@@ -18,4 +18,5 @@ export class OrdemServico {
     quilometros?: any;
     valorGas?: number;
     consumoMedio?: number;
+    valorTotal?: number;
 }

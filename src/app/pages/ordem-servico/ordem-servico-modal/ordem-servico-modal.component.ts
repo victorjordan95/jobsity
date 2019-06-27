@@ -76,6 +76,7 @@ export class OrdemServicoModalComponent implements OnInit {
         let ccbinfo = this.churches.filter(id => id.id === form.value.ccb);
         let t1 = this.tecnicos.filter(id => id.id === form.value.tecnico1);
         let t2 = this.tecnicos.filter(id => id.id === form.value.tecnico2);
+        form.value['valorTotal'] = ((form.value.quilometros/form.value.consumoMedio) * form.value.valorGas) ;
 
         if (ccbinfo.length) {
             ccbinfo = ccbinfo[0];

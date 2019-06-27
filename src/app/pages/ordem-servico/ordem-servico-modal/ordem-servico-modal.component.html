@@ -154,7 +154,7 @@
 
                     <!-- TODO precisa arrumar a fórmula -->
                     <p *ngIf="ordemServico.valorGas && ordemServico.consumoMedio && ordemServico.quilometros">
-                        Valor aproximado gasto na OS: {{ordemServico.valorGas * ordemServico.consumoMedio * ordemServico.quilometros}}
+                        Valor aproximado gasto na OS: {{(ordemServico.consumoMedio/ordemServico.quilometros) * ordemServico.valorGas}}
                     </p>
 
                 </div>
