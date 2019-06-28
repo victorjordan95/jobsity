@@ -107,14 +107,23 @@ export class MapaComponent implements OnInit {
                     :
                     ``
                 }
-                <br><br>
-                <a href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll=" target="_blank" style="margin-top: 16px">
+                <br>
+                ${this.userLat && this.userLng ?
+                    `<span>
+                        Distância até essa igreja, aproximadamente:
+                        ${this.getDistance([igreja.lat, igreja.lng], [this.userLat, this.userLng]).toFixed(3)} quilômetros
+                    </span>`
+                    :
+                    ''
+                }
+                <br>
+                <a
+                    href="https://maps.google.com/maps?daddr=${igreja.lat},${igreja.lng}&amp;ll="
+                    target="_blank"
+                    style="display: block; text-align: right"
+                >
                     Abrir no GPS
                 </a>
-                <span>
-                    Distância até essa igreja, aproximadamente:
-                    ${this.getDistance([igreja.lat, igreja.lng], [this.userLat, this.userLng])} metros
-                </span>
             `;
 
             if (igreja.ordemServico !== undefined) {
@@ -147,7 +156,7 @@ export class MapaComponent implements OnInit {
         });
     }
 
-    rad(x) {
+    rad(x: number) {
         return x * Math.PI / 180;
     }
 
@@ -163,7 +172,7 @@ export class MapaComponent implements OnInit {
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const d = R * c;
 
-        return d; // returns the distance in meter
+        return d / 1000; // returns the distance in km
     }
 
 

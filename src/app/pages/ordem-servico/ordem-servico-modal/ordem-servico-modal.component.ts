@@ -1,13 +1,18 @@
 import { NgForm } from '@angular/forms';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { ModalDirective } from 'ngx-bootstrap';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Subscription } from 'rxjs';
+
 import { ToastrService } from 'ngx-toastr';
-import { OrdemServico } from '../OrdemServico';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { CrudService } from '../../../shared/services/crud.service';
-import { Subscription } from 'rxjs';
+
+import { ModalDirective } from 'ngx-bootstrap';
+
+import { OrdemServico } from '../OrdemServico';
 import { Tecnico } from '../../tecnico/tecnico';
+
+import * as moment from 'moment';
 
 
 @Component({
@@ -76,7 +81,13 @@ export class OrdemServicoModalComponent implements OnInit {
         let ccbinfo = this.churches.filter(id => id.id === form.value.ccb);
         let t1 = this.tecnicos.filter(id => id.id === form.value.tecnico1);
         let t2 = this.tecnicos.filter(id => id.id === form.value.tecnico2);
-        form.value['valorTotal'] = ((form.value.quilometros/form.value.consumoMedio) * form.value.valorGas) ;
+        debugger;
+        const valorHoraTecnico = 0;
+        const horaEntrada = new Date(`05/05/2019 ${form.value.horaEntrada}`);
+        const horaSaida = new Date(`05/05/2019 ${form.value.horaEntrada}`);
+        const duration = moment.utc(moment(form.value.horaSaida,"DD/MM/YYYY HH:mm:ss").diff(moment(form.value.horaEntrada,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
+        // const duration = moment.duration((form.value.horaSaida).diff(form.value.horaEntrada));
+        form.value['valorTotal'] = (((form.value.quilometros / form.value.consumoMedio) * form.value.valorGas) + valorHoraTecnico).toFixed(3);
 
         if (ccbinfo.length) {
             ccbinfo = ccbinfo[0];
