@@ -112,50 +112,50 @@
                         </textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label>Hora entrada</label>
-                        <input 
-                            autocomplete="false" 
-                            type="time" 
-                            class="form-control" 
-                            placeholder="Hora entrada"
-                            [(ngModel)]="ordemServico.horaEntrada" 
-                            name="horaEntrada" 
-                            required 
-                            
-                        >
-                    </div>
+                   <div *ngIf="isEditing">
+                        <div class="form-group">
+                            <label>Hora entrada</label>
+                            <input 
+                                autocomplete="false" 
+                                type="time" 
+                                class="form-control" 
+                                placeholder="Hora entrada"
+                                [(ngModel)]="ordemServico.horaEntrada" 
+                                name="horaEntrada"
+                            >
+                        </div>
 
-                    <div class="form-group">
-                      <label>Hora saída</label>
-                      <input autocomplete="false" type="time" class="form-control" placeholder="Hora saída"
-                        [(ngModel)]="ordemServico.horaSaida" name="horaSaida" required >
-                    </div>
+                        <div class="form-group">
+                        <label>Hora saída</label>
+                        <input autocomplete="false" type="time" class="form-control" placeholder="Hora saída"
+                            [(ngModel)]="ordemServico.horaSaida" name="horaSaida">
+                        </div>
 
-                    <div class="form-group">
-                        <label>Quantidade de quilômetros aproximadamente (ida e volta)</label>
-                        <input autocomplete="false" type="text" class="form-control" placeholder="Quantidade de quilômetros aproximadamente"
-                            [(ngModel)]="ordemServico.quilometros" name="quilometros" required >
-                    </div>
+                        <div class="form-group">
+                            <label>Quantidade de quilômetros aproximadamente (ida e volta)</label>
+                            <input autocomplete="false" type="text" class="form-control" placeholder="Quantidade de quilômetros aproximadamente"
+                                [(ngModel)]="ordemServico.quilometros" name="quilometros">
+                        </div>
 
-                    <div class="form-group">
-                      <label>Valor combustível</label>
-                      <input autocomplete="false" type="text" class="form-control"
-                        placeholder="Preço do combustível usado" [(ngModel)]="ordemServico.valorGas"
-                        name="valorGas" required >
-                    </div>
+                        <div class="form-group">
+                        <label>Valor combustível</label>
+                        <input autocomplete="false" type="text" class="form-control"
+                            placeholder="Preço do combustível usado" [(ngModel)]="ordemServico.valorGas"
+                            name="valorGas">
+                        </div>
 
-                    <div class="form-group">
-                      <label>Consumo médio carro</label>
-                      <input autocomplete="false" type="text" class="form-control"
-                        placeholder="Consumo do carro" [(ngModel)]="ordemServico.consumoMedio"
-                        name="consumoMedio" required >
-                    </div>
+                        <div class="form-group">
+                        <label>Consumo médio carro</label>
+                        <input autocomplete="false" type="text" class="form-control"
+                            placeholder="Consumo do carro" [(ngModel)]="ordemServico.consumoMedio"
+                            name="consumoMedio">
+                        </div>
 
-                    <!-- TODO precisa arrumar a fórmula -->
-                    <p *ngIf="ordemServico.valorGas && ordemServico.consumoMedio && ordemServico.quilometros">
-                        Valor aproximado gasto na OS: R${{((ordemServico.quilometros / ordemServico.consumoMedio) * ordemServico.valorGas).toFixed(3)}}
-                    </p>
+                        <!-- TODO precisa arrumar a fórmula -->
+                        <p *ngIf="ordemServico.valorGas && ordemServico.consumoMedio && ordemServico.quilometros">
+                            Valor aproximado gasto na OS: R${{((ordemServico.quilometros / ordemServico.consumoMedio) * ordemServico.valorGas).toFixed(3)}}
+                        </p>
+                   </div>
 
                 </div>
                 <div class="modal-footer">
