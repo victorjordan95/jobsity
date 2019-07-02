@@ -147,6 +147,8 @@ export class MapaComponent implements OnInit {
                         Marker.prototype.options.icon = this.greyIcon;
                         break;
                 }
+            } else {
+                Marker.prototype.options.icon = this.greyIcon;
             }
 
             L.marker([igreja.lat || '', igreja.lng || ''])
