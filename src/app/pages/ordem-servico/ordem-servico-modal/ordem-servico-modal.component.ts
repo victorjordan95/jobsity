@@ -57,7 +57,6 @@ export class OrdemServicoModalComponent implements OnInit {
 
     showModal(e?) {
         if (e) {
-            console.log(e);
             this.ordemServico = e;
             this.isEditing = true;
             this.ordemServico.quilometros = Math.round(this.getDistance([e.ccbinfo.lat, e.ccbinfo.lng], [this.userLat, this.userLng]) * 2);
@@ -81,13 +80,16 @@ export class OrdemServicoModalComponent implements OnInit {
         let ccbinfo = this.churches.filter(id => id.id === form.value.ccb);
         let t1 = this.tecnicos.filter(id => id.id === form.value.tecnico1);
         let t2 = this.tecnicos.filter(id => id.id === form.value.tecnico2);
-        debugger;
+
         const valorHoraTecnico = 0;
-        const horaEntrada = new Date(`05/05/2019 ${form.value.horaEntrada}`);
-        const horaSaida = new Date(`05/05/2019 ${form.value.horaEntrada}`);
-        const duration = moment.utc(moment(form.value.horaSaida,"DD/MM/YYYY HH:mm:ss").diff(moment(form.value.horaEntrada,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
-        // const duration = moment.duration((form.value.horaSaida).diff(form.value.horaEntrada));
-        form.value['valorTotal'] = (((form.value.quilometros / form.value.consumoMedio) * form.value.valorGas) + valorHoraTecnico).toFixed(3);
+        const horaEntrada = moment( new Date(`05/05/2019 ${form.value.horaEntrada}`));
+        const horaSaida = moment(`05/05/2019 ${form.value.horaSaida}`);
+        const duration = moment.duration(horaSaida.diff(horaEntrada)).asHours();
+        
+        form.value['valorTotal'] = ((
+            (form.value.quilometros / form.value.consumoMedio) *
+            form.value.valorGas) + (valorHoraTecnico * duration
+        )).toFixed(3);
 
         if (ccbinfo.length) {
             ccbinfo = ccbinfo[0];
