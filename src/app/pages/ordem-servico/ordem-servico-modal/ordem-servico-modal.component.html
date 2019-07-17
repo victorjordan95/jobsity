@@ -111,7 +111,7 @@
                         <textarea class="textarea" placeholder="Observações" [(ngModel)]="ordemServico.observacoes" name="observacoes" rows="5">
                         </textarea>
                     </div>
-
+                <!-- 
                    <div *ngIf="isEditing">
                         <div class="form-group">
                             <label>Hora entrada</label>
@@ -126,9 +126,9 @@
                         </div>
 
                         <div class="form-group">
-                        <label>Hora saída</label>
-                        <input autocomplete="false" type="time" class="form-control" placeholder="Hora saída"
-                            [(ngModel)]="ordemServico.horaSaida" name="horaSaida">
+                            <label>Hora saída</label>
+                            <input autocomplete="false" type="time" class="form-control" placeholder="Hora saída"
+                                [(ngModel)]="ordemServico.horaSaida" name="horaSaida">
                         </div>
 
                         <div class="form-group">
@@ -151,11 +151,11 @@
                             name="consumoMedio">
                         </div>
 
-                        <!-- TODO precisa arrumar a fórmula -->
                         <p *ngIf="ordemServico.valorGas && ordemServico.consumoMedio && ordemServico.quilometros">
                             Valor aproximado gasto na OS: R${{((ordemServico.quilometros / ordemServico.consumoMedio) * ordemServico.valorGas).toFixed(3)}}
-                        </p>
+                        </p> 
                    </div>
+                -->
 
                 </div>
                 <div class="modal-footer">

@@ -59,7 +59,7 @@ export class OrdemServicoModalComponent implements OnInit {
         if (e) {
             this.ordemServico = e;
             this.isEditing = true;
-            this.ordemServico.quilometros = Math.round(this.getDistance([e.ccbinfo.lat, e.ccbinfo.lng], [this.userLat, this.userLng]) * 2);
+            // this.ordemServico.quilometros = Math.round(this.getDistance([e.ccbinfo.lat, e.ccbinfo.lng], [this.userLat, this.userLng]) * 2);
         } else {
             this.ordemServico = new OrdemServico;
             this.isEditing = false;
@@ -81,15 +81,15 @@ export class OrdemServicoModalComponent implements OnInit {
         let t1 = this.tecnicos.filter(id => id.id === form.value.tecnico1);
         let t2 = this.tecnicos.filter(id => id.id === form.value.tecnico2);
 
-        const valorHoraTecnico = 0;
-        const horaEntrada = moment( new Date(`05/05/2019 ${form.value.horaEntrada}`));
-        const horaSaida = moment(`05/05/2019 ${form.value.horaSaida}`);
-        const duration = moment.duration(horaSaida.diff(horaEntrada)).asHours();
-        
-        form.value['valorTotal'] = ((
-            (form.value.quilometros / form.value.consumoMedio) *
-            form.value.valorGas) + (valorHoraTecnico * duration
-        )).toFixed(3);
+        // const valorHoraTecnico = 0;
+        // const horaEntrada = moment( new Date(`05/05/2019 ${form.value.horaEntrada}`));
+        // const horaSaida = moment(`05/05/2019 ${form.value.horaSaida}`);
+        // const duration = moment.duration(horaSaida.diff(horaEntrada)).asHours();
+
+        // form.value['valorTotal'] = ((
+        //     (form.value.quilometros / form.value.consumoMedio) *
+        //     form.value.valorGas) + (valorHoraTecnico * duration
+        // )).toFixed(3);
 
         if (ccbinfo.length) {
             ccbinfo = ccbinfo[0];
