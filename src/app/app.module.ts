@@ -1,4 +1,3 @@
-import { DeleteModalComponent } from './shared/components/delete-modal/delete-modal.component';
 import { SharedModule } from './shared/shared.module';
 import {CalendarComponent} from 'ap-angular2-fullcalendar/src/calendar/calendar';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';

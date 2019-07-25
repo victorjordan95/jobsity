@@ -4,7 +4,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { CriarEventoComponent } from './criar-evento/criar-evento.component';
-import { NewsModalComponent } from 'src/app/shared/components/news-modal/news-modal.component';
 
 @Component({
     selector: 'app-agendamento',
@@ -15,7 +14,6 @@ import { NewsModalComponent } from 'src/app/shared/components/news-modal/news-mo
 })
 export class AgendamentoComponent implements OnInit {
     @ViewChild(CriarEventoComponent) modalComponent: CriarEventoComponent;
-    @ViewChild(NewsModalComponent) newsModal: NewsModalComponent;
 
     public calendarIsLoaded = true;
     public userId;
