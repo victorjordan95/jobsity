@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "smartshoes-app": {
+    "jobsity-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -33,7 +33,7 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./src/assets/leaflet/leaflet.js",
+              "./src/assets/leaflet/leaflet.js"
             ]
           },
           "configurations": {
@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "smartshoes-app:build"
+            "browserTarget": "jobsity-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "smartshoes-app:build:production"
+              "browserTarget": "jobsity-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "smartshoes-app:build"
+            "browserTarget": "jobsity-app:build"
           }
         },
         "test": {
@@ -104,7 +104,7 @@
         }
       }
     },
-    "smartshoes-app-e2e": {
+    "jobsity-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -112,11 +112,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "smartshoes-app:serve"
+            "devServerTarget": "jobsity-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "smartshoes-app:serve:production"
+              "devServerTarget": "jobsity-app:serve:production"
             }
           }
         },
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "smartshoes-app"
+  "defaultProject": "jobsity-app"
 }

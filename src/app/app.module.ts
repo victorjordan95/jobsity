@@ -67,7 +67,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AngularFireAuthModule,
     AngularFireStorageModule,
     PerfectScrollbarModule,
-    
     ToastrModule.forRoot({
       preventDuplicates: true,
       progressBar: true,
