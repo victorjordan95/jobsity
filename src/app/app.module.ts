@@ -12,6 +12,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { FirebaseConfig } from './../environments/firebase.config';
 import { AngularFireModule } from '@angular/fire';
@@ -30,32 +32,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SearchComponent } from './layout/header/search/search.component';
 import { NavigationTriggerComponent } from './layout/header/navigation-trigger/navigation-trigger.component';
-import { LoginComponent } from './pages/login/login.component';
 import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
 import { CriarEventoComponent } from './pages/agendamento/criar-evento/criar-evento.component';
 import { ToastrModule } from 'ngx-toastr';
-import { IgrejasComponent } from './pages/igrejas/igrejas.component';
-import { IgrejaModalComponent } from './pages/igrejas/igreja-modal/igreja-modal.component';
-import { ModalEncarregadoComponent } from './pages/encarregado-manutencao/modal-encarregado/modal-encarregado.component';
-import { TecnicoComponent } from './pages/tecnico/tecnico.component';
-import { ModalTecnicoComponent } from './pages/tecnico/modal-tecnico/modal-tecnico.component';
-import { OrgaoComponent } from './pages/orgao/orgao.component';
-import { ModalOrgaoComponent } from './pages/orgao/modal-orgao/modal-orgao.component';
-import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-import { ModalUsuariosComponent } from './pages/usuarios/modal-usuarios/modal-usuarios.component';
-import { StatusComponent } from './pages/status/status.component';
-import { ModalStatusComponent } from './pages/status/modal-status/modal-status.component';
-import { EncarregadoManutencaoComponent } from './pages/encarregado-manutencao/encarregado-manutencao.component';
-import { UpdatePasswordComponent } from './pages/profile/update-password/update-password.component';
-import { OrdemServicoComponent } from './pages/ordem-servico/ordem-servico.component';
-import { OrdemServicoModalComponent } from './pages/ordem-servico/ordem-servico-modal/ordem-servico-modal.component';
-import { OrdemServicoModalViewComponent } from './pages/ordem-servico/ordem-servico-modal-view/ordem-servico-modal-view.component';
 import { LoaderComponent } from './layout/loader/loader.component';
-import { MapaComponent } from './pages/mapa/mapa.component';
-import { EmailComponent } from './pages/email/email.component';
-import { NewsModalComponent } from './shared/components/news-modal/news-modal.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { PieChartComponent } from './pages/dashboard/pie-chart/pie-chart.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -68,33 +48,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HeaderComponent,
     SearchComponent,
     NavigationTriggerComponent,
-    LoginComponent,
     AgendamentoComponent,
     CalendarComponent,
     CriarEventoComponent,
-    IgrejasComponent,
-    IgrejaModalComponent,
-    EncarregadoManutencaoComponent,
-    ModalEncarregadoComponent,
-    TecnicoComponent,
-    ModalTecnicoComponent,
-    OrgaoComponent,
-    ModalOrgaoComponent,
-    UsuariosComponent,
-    ModalUsuariosComponent,
-    StatusComponent,
-    ModalStatusComponent,
-    DeleteModalComponent,
-    UpdatePasswordComponent,
-    OrdemServicoComponent,
-    OrdemServicoModalComponent,
-    OrdemServicoModalViewComponent,
     LoaderComponent,
-    MapaComponent,
-    EmailComponent,
-    NewsModalComponent,
-    DashboardComponent,
-    PieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -104,12 +61,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SharedModule,
     FormsModule,
     BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     ModalModule.forRoot(),
     AngularFireModule.initializeApp(FirebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
     PerfectScrollbarModule,
+    
     ToastrModule.forRoot({
       preventDuplicates: true,
       progressBar: true,

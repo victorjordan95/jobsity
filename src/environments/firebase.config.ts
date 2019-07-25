@@ -1,8 +1,8 @@
 export const FirebaseConfig = {
-    apiKey: "AIzaSyCXk8YLvNTq7yJAE0faR4_3m9iduqM_jfE",
-    authDomain: "ccb-orgao.firebaseapp.com",
-    databaseURL: "https://ccb-orgao.firebaseio.com",
-    projectId: "ccb-orgao",
-    storageBucket: "ccb-orgao.appspot.com",
-    messagingSenderId: "882670329062"
+    apiKey: 'AIzaSyD-34dEpJRHsfsGXLBkwGBwo-hpG8X8vdA',
+    authDomain: 'fitmeetings.firebaseapp.com',
+    databaseURL: 'https://fitmeetings.firebaseio.com',
+    projectId: 'fitmeetings',
+    storageBucket: 'fitmeetings.appspot.com',
+    messagingSenderId: '269170060142'
 };

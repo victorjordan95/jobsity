@@ -1,6 +1,8 @@
 export class Agendamento {
     id: any;
     title: string;
+    city: string;
+    color: string;
     start: any;
     startDate: Date;
     startHour: any;
@@ -10,6 +12,4 @@ export class Agendamento {
     dow?: any;
     allDay?: Boolean;
     repeatEvent?: Boolean;
-    author?: String;
-    igreja?: String;
 }

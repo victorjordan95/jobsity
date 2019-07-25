@@ -4,74 +4,83 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" (click)="createModal.hide()">&times;</button>
-        <h4 class="modal-title">
-            {{ isViewMode ? "Visualização de Evento" : "Evento" }}
-        </h4>
+        <h4 class="modal-title">{{agendamento.title ? agendamento.title + 'reminder' : 'Create Reminder'}}</h4>
       </div>
 
-      <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
 
 
         <div class="modal-body">
-          <input autocomplete="false"type="hidden" name="id" [(ngModel)]="agendamento.id">
+          <input type="hidden" name="id" [(ngModel)]="agendamento.id">
 
           <div class="form-group">
-            <label>Nome Evento</label>
-            <input autocomplete="false"type="text" class="form-control" placeholder="Nome do Evento" [(ngModel)]="agendamento.title" name="title"
+            <label>Reminder</label>
+            <input type="text" class="form-control" placeholder="Reminder name" [(ngModel)]="agendamento.title"
+              name="title" required [disabled]="isViewMode">
+          </div>
+
+          <div class="form-group">
+            <label>City Name</label>
+            <input type="text" class="form-control" placeholder="City Name" [(ngModel)]="agendamento.city" name="city"
               required [disabled]="isViewMode">
           </div>
 
+          <div class="form-group">
+            <label>Event Color</label>
+            <input type="color" value="#ff0000" class="form-control" [(ngModel)]="agendamento.color" name="color"
+              required [disabled]="isViewMode" style="height: 50px">
+          </div>
+
           <div class="flex-row">
             <div class="form-group">
-              <label>Data Início</label>
-              <input autocomplete="false"type="date" class="form-control" placeholder="Data de início" [(ngModel)]="agendamento.startDate"
+              <label>Start Date</label>
+              <input type="date" class="form-control" placeholder="Start Date" [(ngModel)]="agendamento.startDate"
                 name="startDate" required [disabled]="isViewMode">
             </div>
             <div class="form-group">
-              <label>Hora Início</label>
-              <input autocomplete="false"type="time" class="form-control" placeholder="Hora de início" [(ngModel)]="agendamento.startHour"
+              <label>Start Hour</label>
+              <input type="time" class="form-control" placeholder="Start Hour" [(ngModel)]="agendamento.startHour"
                 name="startHour" required [disabled]="isViewMode">
             </div>
-          </div>
 
-          <!-- <div class="flex-row">
             <div class="form-group">
-              <label>Data término</label>
-              <input autocomplete="false"type="date" class="form-control" placeholder="Data de término" [(ngModel)]="agendamento.endDate"
-                name="endDate" [disabled]="isViewMode">
-            </div>
-            <div class="form-group">
-              <label>Hora término</label>
-              <input autocomplete="false"type="time" class="form-control" placeholder="Hora de término" [(ngModel)]="agendamento.endHour"
+              <label>Finish Hour</label>
+              <input type="time" class="form-control" placeholder="Finish Hour" [(ngModel)]="agendamento.endHour"
                 name="endHour" [disabled]="isViewMode">
             </div>
-          </div> -->
-
-          <div class="flex-row">
-              <label>Igreja</label>
-              <ng-select 
-                    class="form-control"
-                    [items]="churches" 
-                    bindLabel="bairro" 
-                    bindValue="id"
-                    [disabled]="isViewMode"
-                    [(ngModel)]="agendamento.igreja"
-                    name="igreja"
-                    placeholder="Selecione uma igreja..."
-                >
-                </ng-select>
-
           </div>
+
+          <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="isCollapsed" aria-controls="collapseBasic">
+            Click to see Weather at this day
+          </button>
+          <div id="collapseBasic" [collapse]="isCollapsed">
+            <div *ngIf="!isNew && weather">
+              <span>Humidity</span>: <b>{{weather.main.humidity}}</b> <br>
+              <span>Pressure</span>: <b>{{weather.main.pressure}}</b> <br>
+              <span>Temperature</span>: <b>{{weather.main.temp}} °F</b> <br>
+              <span>Max. temperature</span>: <b>{{weather.main.temp_max}} °F</b> <br>
+              <span>Min. temperature</span>: <b>{{weather.main.temp_min}} °F</b> <br>
+            </div>
+          </div>
+
+
 
         </div>
         <div class="modal-footer" *ngIf="!isViewMode">
-          <button type="button" class="btn" (click)="createModal.hide()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="!f.valid">Salvar</button>
+          <div style="display: flex; flex-flow: row wrap; justify-content: space-between; width: 100%;">
+            <button type="button" class="btn btn-success" (click)="enableEdit()" *ngIf="!isNew">Delete</button>
+
+            <div>
+              <button type="button" style="margin-right: 8px" class="btn" (click)="createModal.hide()">Cancel</button>
+              <button type="submit" class="btn btn-success" [disabled]="!f.valid">Save</button>
+            </div>
+          </div>
         </div>
         <div class="modal-footer" *ngIf="isViewMode">
-            <button type="button" class="btn btn-success" (click)="enableEdit()">Editar</button>
+          <button type="button" class="btn btn-success" (click)="enableEdit()">Edit</button>
         </div>
-        
+
       </form>
 
     </div>

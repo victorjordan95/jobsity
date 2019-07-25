@@ -7,7 +7,9 @@ import {HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CrudService {
 
-    public baseURL = environment.baseURL;
+    private API_KEY = '91d1db26963257686d610caa3a4df6f3';
+
+    // baseURL = environment.baseURL;
     private header = new HttpHeaders({
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json'
@@ -15,12 +17,9 @@ export class CrudService {
 
     constructor(private http: HttpClient) { }
 
-    // getProduct() {
-    //     return this.http.get(`${this.baseURL}/api/products`);
-    // }
-
-    public saveOption(data: any, route: string) {
-        return this.http.post(`${this.baseURL}/api/${route}`, data, { headers: this.header });
+    getWeather(cityName: string, date?: number) {
+        return this.http
+        .get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&type=hour&start=${date}&appid=${this.API_KEY}`);
     }
 
 }

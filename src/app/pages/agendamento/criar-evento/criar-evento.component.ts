@@ -7,46 +7,50 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { EventEmitter } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { CrudService } from 'src/app/shared/services/crud.service';
 
 @Component({
     selector: 'app-criar-evento',
     templateUrl: './criar-evento.component.html',
     styleUrls: ['./criar-evento.component.scss'],
+    providers: [CrudService]
 })
 export class CriarEventoComponent implements OnInit {
     @ViewChild('createModal') createModal: ModalDirective;
     @Output() modalAgendamento = new EventEmitter();
     @Input() events;
 
+    public isNew: boolean;
+    public weather: string[];
+
+    isCollapsed = true;
+
+    public humidity: number;
+    public pressure: number;
+    public temp: number;
+    public temp_max: number;
+    public temp_min: number;
+
+    public subscription: Subscription;
+
     public allDayAgendamento = false;
     public agendamento = new Agendamento;
-    public dias = [
-        { id: 0, label: 'Domingo' },
-        { id: 1, label: 'Segunda-feira' },
-        { id: 2, label: 'Terça-feira' },
-        { id: 3, label: 'Quarta-feira' },
-        { id: 4, label: 'Quinta-feira' },
-        { id: 5, label: 'Sexta-feira' },
-        { id: 6, label: 'Sábado' },
-    ];
-    private userId;
+
     private canSave = true;
-    public churches;
     public isViewMode = false;
 
-    constructor(private angularFire: AngularFireDatabase, private toastr: ToastrService) {
+    constructor(private angularFire: AngularFireDatabase, private toastr: ToastrService, private crudService: CrudService) {
     }
 
     ngOnInit() {
-        this.getChurches();
     }
 
-    showModal(userId, event?): void {
-        this.userId = userId;
+    showModal(event?): void {
         if (event) {
             this.agendamento = event[0];
             event[0].end === undefined ? this.agendamento.end = event.start : this.agendamento.end = event[0].end;
             this.isViewMode = true;
+            this.getWeather(event[0].city, new Date(event[0]).getTime());
         } else {
             this.isViewMode = false;
             this.agendamento = new Agendamento;
@@ -65,26 +69,11 @@ export class CriarEventoComponent implements OnInit {
     }
 
     dismissModal() {
+        this.isCollapsed = true;
+        this.weather = [];
         this.createModal.hide();
     }
 
-    getChurches() {
-        this.angularFire.list(`igrejas`).valueChanges().subscribe(
-            data => {
-                this.churches = data;
-            }
-        );
-    }
-
-    changePeriod(e) {
-        this.agendamento.allDay = !e;
-        this.allDayAgendamento = e;
-
-    }
-
-    changeRepeatEvent(e) {
-        this.agendamento.repeatEvent = e;
-    }
 
     onSubmit(form: NgForm) {
         form.value.allDay = false;
@@ -139,6 +128,20 @@ export class CriarEventoComponent implements OnInit {
 
     enableEdit() {
         this.isViewMode = false;
+    }
+
+    getWeather(city: string, time: number) {
+        this.subscription = this.crudService.getWeather(city, time).subscribe(
+            (data: any) => {
+                this.humidity = data.main.humidity;
+                this.pressure = data.main.pressure;
+                this.temp = data.main.temp;
+                this.temp_max = data.main.temp_max;
+                this.temp_min = data.main.temp_min;
+                this.weather = data;
+            },
+            err => console.log(err)
+        )
     }
 
 }

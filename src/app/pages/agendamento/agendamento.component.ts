@@ -21,31 +21,18 @@ export class AgendamentoComponent implements OnInit {
     public userId;
     public rooms;
     public selectedRoom;
-    public selectedRoomId;
     public readNews: string;
 
     public user: String;
-    public calendarOptions = {
+    public calendarOptions: any = {
         height: 'parent',
         fixedWeekCount: false,
+        allDayDefault: true,
         defaultDate: new Date(),
+        defaultView: window.innerWidth > 768 ? 'month' : 'list',
         editable: true,
-        locale: 'pt-BR',
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay,list'
-        },
-        buttonText: {
-            prev: 'Anterior',
-            next: 'Próximo',
-            today: 'Hoje',
-            month: 'Mês',
-            week: 'Semana',
-            day: 'Dia',
-            list: 'Lista'
-        },
         eventLimit: true,
+        displayEventTime: true,
         events: [],
         eventClick: (event, jsEvent, view) => {
             const clickedEvent = this.calendarOptions.events.filter(element => element.id === event.id);
@@ -54,29 +41,46 @@ export class AgendamentoComponent implements OnInit {
         dayClick: function (date, jsEvent, view) {
             alert('Clicked on: ' + date.format());
         },
-        timeFormat: 'H(:mm)',
+        timeFormat: 'HH:mm',
         eventOverlap: false,
-        allDaySlot: false
+        allDaySlot: true
     };
 
     constructor(private angularFire: AngularFireDatabase, private afAuth: AngularFireAuth, private toastr: ToastrService) {
+        if (window.innerWidth > 768) {
+            this.calendarOptions.header = {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month, agendaWeek, agendaDay, list'
+            };
+            this.calendarOptions.buttonText = {
+                today: 'Today',
+                month: 'Month',
+                week: 'Week',
+                day: 'Day',
+                list: 'List'
+            };
+        } else {
+            this.calendarOptions.header = {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'listMonth, listWeek, list'
+            };
+            this.calendarOptions.buttonText = {
+                today: 'Today',
+                listMonth: 'Month',
+                listWeek: 'Week',
+                list: 'Day',
+            };
+        }
     }
 
     ngOnInit() {
-        this.userId = atob(localStorage.getItem('usuario')).split(',')[1];
-        this.readNews = localStorage.getItem('readNews');
         this.getEvents();
     }
 
-    ngAfterViewInit(): void {
-        if (this.readNews == 'false') {
-            this.newsModal.showModal();
-        }
-        
-    }
-    
     showModal(event?) {
-        this.modalComponent.showModal(this.selectedRoomId, event);
+        this.modalComponent.showModal(event);
     }
 
     getEvents() {
@@ -91,24 +95,9 @@ export class AgendamentoComponent implements OnInit {
         );
     }
 
-    getRooms() {
-        this.angularFire.list(`rooms`).valueChanges().subscribe(
-            data => {
-                this.rooms = data;
-                this.selectedRoom = this.rooms[0];
-                this.selectedRoomId = this.selectedRoom.id;
-            }
-        );
-    }
-
     updateSchedules(e) {
         this.toastr.success(`Evento "${e.title}" foi cadastrado com sucesso `, 'Sucesso!');
         this.getEvents();
-    }
-
-    updateRoom(e) {
-        this.selectedRoomId = e;
-        // this.getEvents(e);
     }
 
 }
