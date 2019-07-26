@@ -5,6 +5,11 @@ This project is designed to test your knowledge of front-end web technologies an
 ability to create front-end UI products with attention to details, cross-browser compatibility,
 standards, and reusability.
 
+## Install
+$ git clone https://github.com/victorjordan95/jobsity.git
+$ cd jobsity
+$ npm install
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
 The app will automatically reload if you change any of the source files.
