@@ -7,7 +7,9 @@ standards, and reusability.
 
 ## Install
 `$ git clone https://github.com/victorjordan95/jobsity.git`
+
 `$ cd jobsity`
+
 `$ npm install`
 
 ## Development server
