@@ -6,9 +6,9 @@ ability to create front-end UI products with attention to details, cross-browser
 standards, and reusability.
 
 ## Install
-$ git clone https://github.com/victorjordan95/jobsity.git
-$ cd jobsity
-$ npm install
+`$ git clone https://github.com/victorjordan95/jobsity.git`
+`$ cd jobsity`
+`$ npm install`
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
