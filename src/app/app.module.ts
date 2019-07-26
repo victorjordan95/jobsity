@@ -31,8 +31,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SearchComponent } from './layout/header/search/search.component';
 import { NavigationTriggerComponent } from './layout/header/navigation-trigger/navigation-trigger.component';
-import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
-import { CriarEventoComponent } from './pages/agendamento/criar-evento/criar-evento.component';
+import { SchedulerComponent } from './pages/agendamento/scheduler.component';
+import { CreateEventComponent } from './pages/agendamento/create-event/create-event.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LoaderComponent } from './layout/loader/loader.component';
 
@@ -47,9 +47,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HeaderComponent,
     SearchComponent,
     NavigationTriggerComponent,
-    AgendamentoComponent,
+    SchedulerComponent,
     CalendarComponent,
-    CriarEventoComponent,
+    CreateEventComponent,
     LoaderComponent,
   ],
   imports: [

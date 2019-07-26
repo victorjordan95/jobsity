@@ -1,23 +1,22 @@
 import { ToastrService } from 'ngx-toastr';
-import { Agendamento } from './../agendamento';
+import { Scheduler } from '../agendamento';
 import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
 import { EventEmitter } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { CrudService } from 'src/app/shared/services/crud.service';
 
 @Component({
-    selector: 'app-criar-evento',
-    templateUrl: './criar-evento.component.html',
-    styleUrls: ['./criar-evento.component.scss'],
+    selector: 'app-create-event',
+    templateUrl: './create-event.component.html',
+    styleUrls: ['./create-event.component.scss'],
     providers: [CrudService]
 })
-export class CriarEventoComponent implements OnInit {
+export class CreateEventComponent implements OnInit {
     @ViewChild('createModal') createModal: ModalDirective;
-    @Output() modalAgendamento = new EventEmitter();
+    @Output() modalScheduler = new EventEmitter();
     @Input() events;
 
     public isNew: boolean;
@@ -33,8 +32,8 @@ export class CriarEventoComponent implements OnInit {
 
     public subscription: Subscription;
 
-    public allDayAgendamento = false;
-    public agendamento = new Agendamento;
+    public allDayScheduler = false;
+    public agendamento = new Scheduler;
 
     private canSave = true;
     public isViewMode = false;
@@ -53,7 +52,7 @@ export class CriarEventoComponent implements OnInit {
             this.getWeather(event[0].city, new Date(event[0]).getTime());
         } else {
             this.isViewMode = false;
-            this.agendamento = new Agendamento;
+            this.agendamento = new Scheduler;
             this.agendamento.allDay = true;
             this.agendamento.repeatEvent = false;
             const x = new Date();
@@ -116,12 +115,12 @@ export class CriarEventoComponent implements OnInit {
 
         if (this.canSave || !this.isViewMode) {
             this.angularFire.list(`agendamentos`).set(`${this.agendamento.id}`, event).then((t: any) => {
-                this.modalAgendamento.emit(event);
+                this.modalScheduler.emit(event);
                 this.createModal.hide();
-                this.allDayAgendamento = false;
+                this.allDayScheduler = false;
             });
         } else {
-            this.toastr.error(`Ops! Aparentemente já existe um evento neste horário!`, 'Conflito de Horário!');
+            this.toastr.error(`Ops! Apparently, there is an event at this time already!`, 'Conflict!');
         }
 
     }

@@ -3,17 +3,17 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
-import { CriarEventoComponent } from './criar-evento/criar-evento.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 @Component({
-    selector: 'app-agendamento',
-    templateUrl: './agendamento.component.html',
-    styleUrls: ['./agendamento.component.scss'],
+    selector: 'app-scheduler',
+    templateUrl: './scheduler.component.html',
+    styleUrls: ['./scheduler.component.scss'],
     providers: [AngularFireDatabase, AngularFireAuth],
     encapsulation: ViewEncapsulation.None
 })
-export class AgendamentoComponent implements OnInit {
-    @ViewChild(CriarEventoComponent) modalComponent: CriarEventoComponent;
+export class SchedulerComponent implements OnInit {
+    @ViewChild(CreateEventComponent) modalComponent: CreateEventComponent;
 
     public calendarIsLoaded = true;
     public userId;

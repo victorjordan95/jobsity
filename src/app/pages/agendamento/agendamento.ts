@@ -1,4 +1,4 @@
-export class Agendamento {
+export class Scheduler {
     id: any;
     title: string;
     city: string;

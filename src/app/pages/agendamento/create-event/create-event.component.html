@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" (click)="createModal.hide()">&times;</button>
-        <h4 class="modal-title">{{agendamento.title ? agendamento.title + 'reminder' : 'Create Reminder'}}</h4>
+        <h4 class="modal-title">{{agendamento.title ? agendamento.title + ' reminder' : 'Create Reminder'}}</h4>
       </div>
 
       <form #f="ngForm" (ngSubmit)="onSubmit(f)">
@@ -51,9 +51,10 @@
           </div>
 
           <button type="button" class="btn" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="isCollapsed" aria-controls="collapseBasic" *ngIf="!isNew">
+            [attr.aria-expanded]="isCollapsed" aria-controls="collapseBasic" >
             Click to see Weather at this day
           </button>
+          
           <div id="collapseBasic" [collapse]="isCollapsed">
             <div *ngIf="!isNew && weather">
               <span>Humidity</span>: <b>{{weather.main.humidity}}</b> <br>
@@ -69,8 +70,6 @@
         </div>
         <div class="modal-footer" *ngIf="!isViewMode">
           <div style="display: flex; flex-flow: row wrap; justify-content: space-between; width: 100%;">
-            <button type="button" class="btn btn-success" (click)="enableEdit()" *ngIf="!isNew">Delete</button>
-
             <div>
               <button type="button" style="margin-right: 8px" class="btn" (click)="createModal.hide()">Cancel</button>
               <button type="submit" class="btn btn-success" [disabled]="!f.valid">Save</button>

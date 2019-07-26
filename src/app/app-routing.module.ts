@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
+import { SchedulerComponent } from './pages/agendamento/scheduler.component';
 
 const routes: Routes = [
-  { path: '', component: AgendamentoComponent },
+  { path: '', component: SchedulerComponent },
 ];
 
 @NgModule({
